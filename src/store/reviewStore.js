@@ -11,7 +11,9 @@ class reviewStore{
         productName:user.productName,
         productType:user.productType,
         userName:user.userName,
-        reviewText:user.reviewText
+        reviewText:user.reviewText,
+        productUrlId:user.productUrlId,
+        productImgUrl:user.productImgUrl
     })
     //     this.user=newUser.data      
     }

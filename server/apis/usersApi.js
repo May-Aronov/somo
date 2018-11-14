@@ -12,10 +12,10 @@ router.post('/newreview/:username',async(req, res) => {
     let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
    console.log(reqData)
  await   Product
-  .findOrCreate({where: {name: reqData.productName , type: reqData.productType}})
+  .findOrCreate({where: {name: reqData.productName , type: reqData.productType, imgurl:reqData.productImgUrl, urlid:reqData.productUrlId}})
   .spread(async(user, created) => {
  let product= user.get({plain: true})
-//  console.log(product)
+ console.log(product)
  let review= await Review.create({text:reqData.reviewText,productId:product.id})
 //  console.log(review)
  res.status(201).send(review)
