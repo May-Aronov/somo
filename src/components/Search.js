@@ -9,7 +9,7 @@ import ResultBook from './Result-Book';
 
 @inject("store")
 @observer
-class Serch extends Component {
+class Search extends Component {
 
     @observable SearchText = ""
 
@@ -69,5 +69,5 @@ class Serch extends Component {
     }
 }
 
-export default Serch;
+export default Search;
 
