@@ -7,14 +7,16 @@ const Review = require('../data-access/Review')
 
 
 
-Api.post('/newreview/:username', async (req, res) => {
+router.post('/newreview/:username',async(req, res) => {
     let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
-   
-    Product
-  .findOrCreate({where: {name: reqData.productname, type: reqData.productType}})
-  .spread((user, created) => {
+   console.log(reqData)
+ await   Product
+  .findOrCreate({where: {name: reqData.productName , type: reqData.productType}})
+  .spread(async(user, created) => {
  let product= user.get({plain: true})
+//  console.log(product)
  let review= await Review.create({text:reqData.reviewText,productId:product.id})
+//  console.log(review)
  res.status(201).send(review)
   })
 
@@ -22,13 +24,14 @@ Api.post('/newreview/:username', async (req, res) => {
 })
  
 
-Api.get('/search', async (req, res) => {
-    let searchtext = req.body;
+router.get('/serch/:SearchText', async (req, res) => {
+    let searchtext = req.params.SearchText;
     Product.findAll({
         where:{name:searchtext},
         include: [Review]
     }).then(product=>{
-        product.reviews
+ 
+        res.status(201).send(product)  
     })
 
 })

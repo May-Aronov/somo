@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// const Api = require('./server/apis/usersApi')
+const Api = require('./server/apis/usersApi')
 const SERVER_PORT = 8080;
 
 let app = express();
