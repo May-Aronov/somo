@@ -20,7 +20,7 @@ class Serch extends Component {
     render() {
         return (
             <div>
-                <h2>serch</h2>
+                <h2>search</h2>
             <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange}/>
             {/* <select name='FilterName' value={this.props.FilterName} onChange={this.handleChange}>
                  <option value='movie'>movie</option>

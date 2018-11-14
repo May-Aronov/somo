@@ -4,7 +4,8 @@ import {observer, inject} from 'mobx-react';
 import Result from './components/Result-Book'
 
 import './App.css';
-import Serch from './components/Serch';
+import Search from './components/Search';
+import AddReview from './components/AddReview';
 
 
 
@@ -15,7 +16,7 @@ class App extends Component {
     return (
       <div className='main-container'>
         <AddReview/>
-        <Serch/>
+        <Search/>
         <Result/>
       </div>
 
