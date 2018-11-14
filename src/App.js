@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import {observer, inject} from 'mobx-react';
-import AddReview from './components/AddReview';
+import Result from './components/Result-Book'
 
 import './App.css';
 import Serch from './components/Serch';
@@ -16,6 +16,7 @@ class App extends Component {
       <div className='main-container'>
         <AddReview/>
         <Serch/>
+        <Result/>
       </div>
 
     );
