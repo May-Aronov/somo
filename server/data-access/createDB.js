@@ -6,10 +6,10 @@ const Product = require('./Product')
 const User = require('./User')
 
 
-// Product.sync()
-// User.sync()
-// Review.sync()
-// Hashtag.sync()
+// Product.sync({})
+// User.sync({})
+// Review.sync({})
+// Hashtag.sync({})
 
 
 

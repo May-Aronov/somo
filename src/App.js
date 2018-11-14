@@ -17,7 +17,7 @@ class App extends Component {
       <div className='main-container'>
         <AddReview/>
         <Search/>
-        <Result/>
+        {/* <Result/> */}
       </div>
 
     );
