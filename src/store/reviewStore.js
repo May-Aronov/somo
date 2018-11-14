@@ -3,7 +3,7 @@ import { observable , action } from "mobx";
 const axios = require('axios')
 
 class reviewStore{
-    @observable   products =[]
+    @observable   products =null
 
     @action addReview=async(user)=>{
         console.log(user)
@@ -20,8 +20,7 @@ class reviewStore{
 
     @action filterReview=async(SearchText)=>{
        let products= await axios.get(`http://localhost:8080/serch/${SearchText}`)
-       console.log(products)
-       products=products.data
+       this.products=products.data
     }
     // @action  getUser=async(userName)=>{
     //     let newUser= await axios.get(`http://localhost:8080/users/${userName}`)
