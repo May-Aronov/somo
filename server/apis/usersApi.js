@@ -5,7 +5,23 @@ const router = express.Router()
 // router.use(bodyParser.urlencoded({ extended: false }));
 
 const Product = require('../data-access/Product')
-const User = require('../data-access/User')
+// const User = require('../data-access/User')
+const Review = require('../data-access/Review')
+
+
+// Product.findOne({ type: "movie" }).then((product) => {
+//     Review.create({
+//         text: "hgjhg",
+//         productId:product.id
+//     }).then(review => {
+//         console.log(review)
+//     }
+//     )
+// })
+
+// Product.create({type:"movie",name:"ET"})
+Review.create({text:"superrrr",productId:"1"})
+
 
 // //1
 // router.get('/users/children/:userName', function (req, res) {
@@ -36,7 +52,7 @@ const User = require('../data-access/User')
 //     }
 //     ).catch((err) => res.send(err))
 
-    
+
 
 // });
 

@@ -1,10 +1,10 @@
 const connection=require('./da') 
 const Sequelize = require('sequelize');
 
-Hashtag = connection.define("hashtag", {
+let Hashtag = connection.define("hashtag", {
     name: { type: Sequelize.STRING }
 })
 
-// Hashtag.sync({})
+Hashtag.sync()
 
-module.exports =(Hashtag);
+module.exports =Hashtag;
