@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle , faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 library.add(faPlusCircle, faCheckCircle);
 
+@inject("store")
+@observer
 class addReview extends Component {
 
   @observable user = {
@@ -47,7 +49,6 @@ submitForm = () => {
       <br></br>
         <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
         <option>Select</option>
-
           <option>Movie</option>
           <option>Book</option>
 
