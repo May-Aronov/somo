@@ -7,14 +7,7 @@ class reviewStore{
 
     @action addReview=async(user)=>{
         console.log(user)
-       let newReview= await axios.post(`http://localhost:8080/newreview/${user.userName}`,{
-        productName:user.productName,
-        productType:user.productType,
-        userName:user.userName,
-        reviewText:user.reviewText,
-        productUrlId:user.productUrlId,
-        productImgUrl:user.productImgUrl
-    })
+       let newReview= await axios.post(`http://localhost:8080/newreview/${user.userName}`,user)
     //     this.user=newUser.data      
     }
 

@@ -24,13 +24,16 @@ class AddReview extends Component {
         this.user.userName.toLowerCase();
         this.user.productType.toLowerCase();
         this.user.productName.toLowerCase();
-        // let user= {
-        //     productName:this.user.productName,
-        //     productType:this.user.productType,
-        //     userName:this.user.userName,
-        //     reviewText:this.user.reviewText
-        // }
-        this.props.store.addReview(this.user)
+        let user={
+            userName: this.user.userName,
+            productType: this.user.productType,
+            productName: this.user.productName,
+            reviewText: this.user.reviewText,
+            productImgUrl:this.user.productImgUrl,
+            productUrlId:this.user.productUrlId
+        }
+        console.log(user)
+        this.props.store.addReview(user)
         this.user.productType = "";
         this.user.productName = "";
         this.user.userName = "";
@@ -41,7 +44,7 @@ class AddReview extends Component {
     @action find = async () => {
         if (this.user.productType == "book") {
             let Mydata = await axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.user.productName)
-            console.log(Mydata.data);
+            // console.log(Mydata.data);
             Mydata = Mydata.data
             if (Mydata.totalItems == "0") {
                 alert("book not found")
@@ -51,7 +54,7 @@ class AddReview extends Component {
                 let c = 0;
                 for (let i = 0; i < 10; i++) {
                     let title = Mydata.items[i].volumeInfo.title;
-                    if (title.toLowerCase() === this.user.productName) {
+                    if (title.toLowerCase() === this.user.productName.toLowerCase()) {
                         c++;
                         this.user.productUrlId = Mydata.items[i].id;
                         this.user.productImgUrl = Mydata.items[i].volumeInfo.imageLinks.smallThumbnail;
@@ -65,7 +68,7 @@ class AddReview extends Component {
         }
         else if (this.user.productType == "movie") {
             let Mydata = await axios.get('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
-            console.log(Mydata.data);
+            // console.log(Mydata.data);
             Mydata = Mydata.data
             if (Mydata.Error) {
                 alert(Mydata.Error)

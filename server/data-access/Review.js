@@ -1,3 +1,4 @@
+
 const connection=require('./da') 
 const Sequelize = require('sequelize');
 
@@ -6,4 +7,6 @@ const Sequelize = require('sequelize');
     text: { type: Sequelize.STRING }
 })
 
-module.exports =Review;
+
+
+module.exports =(Review);
