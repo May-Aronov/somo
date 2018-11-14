@@ -1,9 +1,10 @@
-const connection=require('./da') 
+
 const Sequelize = require('sequelize');
+const connection=require('./da') 
 const Hashtag = require('./Hashtag')
 const Review = require('./Review')
 
-Product = connection.define("product", {
+ let Product = connection.connection.define("product", {
     type: { type: Sequelize.STRING },
     name: { type: Sequelize.STRING }
 })
@@ -11,6 +12,16 @@ Product = connection.define("product", {
 Product.hasMany(Hashtag)
 Product.hasMany(Review)
 
-// Product.sync({})
 
-module.exports =(Product);
+
+
+
+// Product.create({ type: "movie" ,name:"ET" })
+// Review.create({
+//     text: "omg it's amazing",
+//     productId: 1
+// })
+
+
+
+module.exports=Product;
