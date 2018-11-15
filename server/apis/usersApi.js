@@ -37,7 +37,10 @@ router.get('/serch/:SearchText', async (req, res) => {
 
 })
  
-
+// model:Review, include: [{
+//     model:  User ,
+//     where: { id: Sequelize.col('review.userId') }
+// }]
 
 
 

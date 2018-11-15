@@ -11,9 +11,9 @@ class AddReview extends Component {
         productType: "",
         productName: "",
         reviewText: "",
-        productImgUrl:"",
-        productUrlId:""
-        //    hashtags:[]
+        productImgUrl: "",
+        productUrlId: "",
+        hashtags: []
     };
 
     @action inputChange = (e) => {
@@ -24,13 +24,14 @@ class AddReview extends Component {
         this.user.userName.toLowerCase();
         this.user.productType.toLowerCase();
         this.user.productName.toLowerCase();
-        let user={
+        let user = {
             userName: this.user.userName,
             productType: this.user.productType,
             productName: this.user.productName,
             reviewText: this.user.reviewText,
-            productImgUrl:this.user.productImgUrl,
-            productUrlId:this.user.productUrlId
+            productImgUrl: this.user.productImgUrl,
+            productUrlId: this.user.productUrlId,
+            // hashtags: this.user.hashtags
         }
         console.log(user)
         this.props.store.addReview(user)
@@ -44,7 +45,7 @@ class AddReview extends Component {
     @action find = async () => {
         if (this.user.productType == "book") {
             let Mydata = await axios.get('https://www.googleapis.com/books/v1/volumes?q=' + this.user.productName)
-            // console.log(Mydata.data);
+            console.log(Mydata);
             Mydata = Mydata.data
             if (Mydata.totalItems == "0") {
                 alert("book not found")
@@ -62,21 +63,22 @@ class AddReview extends Component {
                         return;
                     }
                 }
-                if(c == 0 ){alert("book not found")}
+                if (c == 0) { alert("book not found") }
             }
 
         }
         else if (this.user.productType == "movie") {
             let Mydata = await axios.get('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
-            // console.log(Mydata.data);
+            console.log(Mydata.data);
             Mydata = Mydata.data
             if (Mydata.Error) {
                 alert(Mydata.Error)
             }
             else {
                 this.user.productUrlId = Mydata.Title
-                this.user.productImgUrl= Mydata.Poster
-                this.user.productName= Mydata.Title
+                this.user.productImgUrl = Mydata.Poster
+                this.user.productName = Mydata.Title
+                // this.user.hashtags.push()
                 alert("found :)")
             }
         }
@@ -95,9 +97,12 @@ class AddReview extends Component {
                 <button type="button" onClick={this.find}>find </button>
                 <br />
                 <input type="text" name="reviewText" onChange={this.inputChange} value={this.user.reviewText} placeholder="your review ..." />
-                {/* <input type="text" name="hashtags" onChange={this.inputChange} value={this.user.hashtags}/> */}
+                {/* <input type="text" name="hashtags" onChange={this.inputChange} value={this.user.hashtags} />
+                <button >+</button>
+                <br></br>
+                <button>Add</button>
                 <br />
-                <button type="button" onClick={this.submitForm} >Add </button>
+                <button type="button" onClick={this.submitForm} >Add </button> */}
             </form>
         );
     }
