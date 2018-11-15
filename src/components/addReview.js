@@ -87,6 +87,10 @@ class AddReview extends Component {
         }
     }
 
+    findHastag(Mydata)=>{
+
+    }
+
     @action inputChange = (e) => {
         console.log(e.target.value)
         this.user[e.target.name] = e.target.value
@@ -189,10 +193,9 @@ class AddReview extends Component {
                 </select>
                 <br></br>
                 <br></br>
-                <h3 id="yourProduct"> Product name:</h3>
-
+                            
+                <h2 id="yourProduct"> Product name:</h2>
                 <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
-
                 <br></br>
                 <button onClick={this.find} class="btn btn-dark">Check if Movie Exist  <FontAwesomeIcon icon="check-circle" size="2x" /></button>
                 <ul>
@@ -208,16 +211,16 @@ class AddReview extends Component {
 
 
                 <h2 id="yourHashtags"> Hashtags:</h2>
+
                 <input name="newHashtag" onChange={this.inputChange} value={this.user.newHashtag}  class="form-control" id="ex3" type="text" />
                 <button class="btn btn-dark" onClick={this.addHashtag}><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
+
 
 
                 <br></br>
                 <button class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
 
-
-
-                <br />
+                <br/>
             </div>
         );
     }
