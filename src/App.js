@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
-import Search from "./components/Search"
+import Search from "./components/search"
 import Home from "./components/Home"
-import AddReview from "./components/AddReview"
+import AddReview from "./components/addReview"
 import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
 import signUp from "./components/signUp"
