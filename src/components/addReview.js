@@ -17,7 +17,7 @@ class AddReview extends Component {
         reviewText: "",
         productImgUrl: "",
         productUrlId: "",
-        hashtags: []
+        // hashtags: []
     };
 
   
