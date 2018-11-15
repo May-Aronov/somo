@@ -46,7 +46,7 @@ class ResultMovie extends Component {
                     </div>
 
                     <div className="reviews-movie">
-                        <h2>Reviews:</h2>{product.reviews.map((r) => {
+                        <h2 id="review">Reviews <FontAwesomeIcon icon="plus-circle" size="2x" /></h2>{product.reviews.map((r) => {
                             return <p>{r.text}</p>
                         })}
                     </div>

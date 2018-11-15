@@ -177,8 +177,10 @@ class AddReview extends Component {
             <div className="addReview" class="text-center">
 
                 <h1><p class="add">ADD NEW REVIEW</p></h1>
-                <br></br>
+                <h4 id="yourProduct"> Username:</h4>
+
                 <input name="userName" onChange={this.inputChange} value={this.user.userName} class="form-control" id="text1" type="text" />
+                
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
                     <option>Select</option>
                     <option value="movie" >Movie</option>
@@ -187,9 +189,9 @@ class AddReview extends Component {
                 </select>
                 <br></br>
                 <br></br>
+                <h3 id="yourProduct"> Product name:</h3>
 
                 <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
-                <h2 id="yourProduct"> Product name:</h2>
 
                 <br></br>
                 <button onClick={this.find} class="btn btn-dark">Check if Movie Exist  <FontAwesomeIcon icon="check-circle" size="2x" /></button>
@@ -201,7 +203,7 @@ class AddReview extends Component {
                 }
                 </ul>
                 <br></br>
-                <h2 id="yourReview"> Your Review:</h2>
+                <h3 id="yourReview"> Your Review:</h3>
                 <textarea name="reviewText" onChange={this.inputChange} value={this.user.reviewText} class="form-control" id="ex2" rows="8.5" cols="60"></textarea>
 
 
