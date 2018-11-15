@@ -17,7 +17,7 @@ class AddReview extends Component {
         reviewText: "",
         productImgUrl: "",
         productUrlId: "",
-        // hashtags: []
+        hashtags: []
     };
 
 
@@ -32,7 +32,7 @@ class AddReview extends Component {
             reviewText: this.user.reviewText,
             productImgUrl: this.user.productImgUrl,
             productUrlId: this.user.productUrlId,
-            // hashtags: this.user.hashtags
+            hashtags: this.user.hashtags
         }
         console.log(user)
         this.props.store.addReview(user)
@@ -79,10 +79,14 @@ class AddReview extends Component {
                 this.user.productUrlId = Mydata.Title
                 this.user.productImgUrl = Mydata.Poster
                 this.user.productName = Mydata.Title
-                // this.user.hashtags.push()
+                this.user.hashtags=this.findhastag(Mydata)
                 alert("found :)")
             }
         }
+    }
+
+    findHastag(Mydata)=>{
+
     }
 
     @action inputChange = (e) => {
@@ -107,7 +111,7 @@ class AddReview extends Component {
                 <br></br>
                 <br></br>
 
-                <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
+                <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text"/>
                 <h2 id="yourProduct"> Product name:</h2>
 
                 <br></br>
@@ -119,15 +123,13 @@ class AddReview extends Component {
                
                 <h2 id="yourHashtags"> Hashtags:</h2>
                 <input class="form-control" id="ex3" type="text" />
-                <button class="btn btn-dark"><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
+                <button class="btn btn-dark"><FontAwesomeIcon icon="plus-circle" size="2x" />+</button>
 
 
                 <br></br>
                 <button class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
 
-
-
-                <br />
+                <br/>
             </div>
         );
     }

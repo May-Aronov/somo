@@ -6,7 +6,17 @@ library.add(faEdit);
 const axios = require('axios')
 
 class ResultBook extends Component {
+
+    @observable data = null
+    componentDidMount = async () => {
+        let dataApi = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${this.props.match.params.urlid}`)
+        this.data = dataApi.data
+    }
+
     render() {
+        let product = this.props.store.products[this.props.match.params.index]
+        if (this.data) {
+            return (
         return (
             <div className="container-book"class="text-center">
                 <div className="name-book">
