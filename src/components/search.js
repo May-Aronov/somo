@@ -47,16 +47,15 @@ class Search extends Component {
             <div className="Search" class="text-center">
                 <div className="inputSearch">
                     <h1 id="search">SEARCH YOUR REVIEWS</h1>
-                    <br></br>
+                    
                     {/* <select class="btn btn-dark">
        <option>Select</option>
          <option>Movie</option>
          <option>Book</option>
          </select> */}
-                    <br></br>
-                    <br></br>
+        
                     <div>
-                        <h2>search</h2>
+                        <h2 id="yourReview">search</h2>
                         <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange} id="text1" class="form-control" type="text" />
                         {/* <select name='FilterName' value={this.props.FilterName} onChange={this.handleChange}>
                  <option value='movie'>movie</option>
