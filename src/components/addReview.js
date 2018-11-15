@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle ,faPlusCircle} from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 library.add(faCheckCircle, faPlusCircle);
 const axios = require('axios')
 
@@ -17,7 +17,8 @@ class AddReview extends Component {
         reviewText: "",
         productImgUrl: "",
         productUrlId: "",
-        // hashtags: []
+        hashtags: [],
+        newHashtag:''
     };
 
 
@@ -32,7 +33,7 @@ class AddReview extends Component {
             reviewText: this.user.reviewText,
             productImgUrl: this.user.productImgUrl,
             productUrlId: this.user.productUrlId,
-            // hashtags: this.user.hashtags
+            hashtags: this.user.hashtags
         }
         console.log(user)
         this.props.store.addReview(user)
@@ -60,6 +61,7 @@ class AddReview extends Component {
                         c++;
                         this.user.productUrlId = Mydata.items[i].id;
                         this.user.productImgUrl = Mydata.items[i].volumeInfo.imageLinks.smallThumbnail;
+                        this.user.hashtags=this.findHashtagBook(Mydata.items[i].volumeInfo)
                         alert("found :)")
                         return;
                     }
@@ -79,7 +81,7 @@ class AddReview extends Component {
                 this.user.productUrlId = Mydata.Title
                 this.user.productImgUrl = Mydata.Poster
                 this.user.productName = Mydata.Title
-                // this.user.hashtags.push()
+                this.user.hashtags=this.findHashtagMovie(Mydata)
                 alert("found :)")
             }
         }
@@ -90,6 +92,85 @@ class AddReview extends Component {
         this.user[e.target.name] = e.target.value
 
     }
+
+    @action addHashtag = () => {
+        this.user.hashtags.push(this.replace(this.user.newHashtag) )
+        this.user.newHashtag=''
+    }
+
+    findHashtagMovie = (data) => {
+        let arr=[]
+        let year="#"+data.Year
+        arr.push(year)
+
+        //gneres
+        let Genres=''
+        if(data.Genre.includes(",")){
+            Genres=data.Genre.split(", ").map((g)=>{
+                arr.push("#"+g.toLowerCase())
+            })
+        }
+        else{
+            Genres="#"+data.Genre.toLowerCase()
+            arr.push(Genres)
+        }
+        
+
+        //act
+        data.Actors.split(", ").map((a)=>{
+            arr.push("#" + this.replace(a)) 
+        })
+
+        //award
+        if(data.Awards.includes("Oscars")){
+            arr.push("#oscars")  
+        }
+        if(data.Awards.includes("Golden Globe")){
+            arr.push("#golden_globe")
+        }
+        
+        //director
+        if(data.Director.includes(",")){
+            data.Director.map((d)=>{
+                arr.push( "#"+this.replace(d))
+            })
+        }
+        else{
+            arr.push("#"+ this.replace(data.Director ))
+        }
+
+        arr.push("#"+ this.replace(data.Title))
+
+    console.log(arr)
+        return arr
+    }
+
+
+    findHashtagBook=(data)=>{
+        let arr=[]
+        if(Array.isArray(data.authors)){
+            data.authors.map((d)=>{
+                arr.push( "#"+this.replace(d))
+            })
+        }
+        else{
+            arr.push("#"+this.replace(data.authors) )
+        }
+
+        arr.push("#" +data.publishedDate.slice(0, 4))
+        arr.push("#" +this.replace(data.title))
+
+        console.log(arr)
+        return arr
+    }
+
+    replace=(word)=>{
+        return word.toLowerCase().split(" ").join("_").replace(/\s+/g, ' ')
+		.replace(/[\'\".,\/!$%\\^&\*;:{}=\-`~()\[\]|+@?<>]/g,'')
+		.replace(/\s{2,}/g,' ');
+    }
+
+
 
     render() {
         return (
@@ -114,14 +195,21 @@ class AddReview extends Component {
 
                 <br></br>
                 <button onClick={this.find} class="btn btn-dark">Check if Movie Exist  <FontAwesomeIcon icon="check-circle" size="2x" /></button>
+                <ul>
+                {
+                    this.user.hashtags.map((h,i)=>{
+                        return <li key={i}>{h}</li>
+                    })
+                }
+                </ul>
                 <br></br>
                 <h3 id="yourReview"> Your Review:</h3>
                 <textarea name="reviewText" onChange={this.inputChange} value={this.user.reviewText} class="form-control" id="ex2" rows="8.5" cols="60"></textarea>
-               
-               
-                <h3 id="yourHashtags"> Hashtags:</h3>
-                <input class="form-control" id="ex3" type="text" />
-                <button class="btn btn-dark"><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
+
+
+                <h2 id="yourHashtags"> Hashtags:</h2>
+                <input name="newHashtag" onChange={this.inputChange} value={this.user.newHashtag}  class="form-control" id="ex3" type="text" />
+                <button class="btn btn-dark" onClick={this.addHashtag}><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
 
 
                 <br></br>
