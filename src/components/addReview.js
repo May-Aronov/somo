@@ -20,7 +20,7 @@ class AddReview extends Component {
         // hashtags: []
     };
 
-  
+
     submitForm = () => {
         this.user.userName.toLowerCase();
         this.user.productType.toLowerCase();
@@ -115,9 +115,13 @@ class AddReview extends Component {
                 <br></br>
                 <h2 id="yourReview"> Your Review:</h2>
                 <textarea name="reviewText" onChange={this.inputChange} value={this.user.reviewText} class="form-control" id="ex2" rows="8.5" cols="60"></textarea>
-                {/* <h2 id="yourHashtags">   Hashtags:</h2>
-       <input class="form-control" id="ex3" type="text" />
-       <button class="btn btn-dark"><FontAwesomeIcon icon="plus-circle" size="2x"/></button> */}
+               
+               
+                <h2 id="yourHashtags"> Hashtags:</h2>
+                <input class="form-control" id="ex3" type="text" />
+                <button class="btn btn-dark"><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
+
+
                 <br></br>
                 <button class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
 
