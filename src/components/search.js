@@ -14,7 +14,7 @@ import ResultBook from './Result-Book';
 @inject("store")
 @observer
 class Search extends Component {
-  
+
   @observable SearchText = ""
   @observable product = ""
   // this.props.store.products
@@ -59,14 +59,13 @@ class Search extends Component {
           <br></br>
           <div class="wrapper">
             <span class="fa-stack ">      <FontAwesomeIcon icon="hashtag" size="10x" />
-            </span></div>
-
+            </span>
+          </div>
           <div>
             {this.props.store.products ? this.renderProducts() : null}
             {/* {this.handleProductClick()} */}
           </div>
         </div>
-
       </div>
     )
   }
