@@ -1,12 +1,13 @@
 const Sequelize = require('sequelize');
 
-class connection{
+class Connection{
     constructor(){
-        this.connection=new Sequelize('mysql://sql12263195:KTQsfqheNb@sql12.freesqldatabase.com/sql12263195');
+        this.connection=new Sequelize('mysql://sql12263194:aYZ57i5R4J@sql12.freesqldatabase.com/sql12263194');
         this.authenticate()
     }
     authenticate(){
-        this.connection.authenticate()
+        this.connection
+        .authenticate()
         .then(() => {
             console.log('Connection has been established successfully.');
         })
@@ -17,5 +18,5 @@ class connection{
 
 }
 
-let Connection = new connection()
-module.exports = (Connection.connection);
+const connection=new Connection()
+module.exports = connection

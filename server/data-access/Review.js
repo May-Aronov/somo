@@ -1,11 +1,12 @@
+
 const connection=require('./da') 
 const Sequelize = require('sequelize');
+// const User = require('./User')
 
-
-Review = connection.define("review", {
+ let Review = connection.connection.define("review", {
     text: { type: Sequelize.STRING }
 })
 
-// Review.sync({})
 
+// Review.belongsTo(User)
 module.exports =(Review);
