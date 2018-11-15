@@ -25,7 +25,7 @@ router.post('/newreview/:username',async(req, res) => {
 })
  
 
-router.get('/serch/:SearchText', async (req, res) => {
+router.get('/search/:SearchText', async (req, res) => {
     let searchtext = req.params.SearchText;
     Product.findAll({
         where:{name:searchtext},
@@ -37,7 +37,10 @@ router.get('/serch/:SearchText', async (req, res) => {
 
 })
  
-
+// model:Review, include: [{
+//     model:  User ,
+//     where: { id: Sequelize.col('review.userId') }
+// }]
 
 
 

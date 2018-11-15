@@ -14,20 +14,19 @@ class Search extends Component {
     @observable SearchText = ""
 
     @observable product = ""
-    // this.props.store.products
     handleChange = (e) => {
         this.SearchText = e.target.value
         this.props.store.filterReview(this.SearchText)
     }
 
     renderProducts = () => {
-        return this.props.store.products.map((p) => {
+        return this.props.store.products.map((p,i) => {
             return (
                 <div>
                   
                         <div onClick={() => { this.product = p }}>
                             <h1>{p.name}</h1>
-                            <Link to={p.type = "movie" ? "/movie" : "/book"}>
+                            <Link to={p.type = "movie" ? `/movie/${i}/${p.urlid}` : `/book/${i}/${p.urlid}` }>
                             <img src={p.imgurl} />
                             </Link >
                         </div>
@@ -36,21 +35,11 @@ class Search extends Component {
             )
         })
     }
-    // handleProductClick = () => {
-    //     if (this.product) {
-    //         let product = this.product
-    //         if (product.type == "movie") {
-    //             return <ResultMovie urlid={product.urlid} reviews={product.reviews} />
-    //         }
-    //         else {
-    //             return <ResultBook urlid={product.urlid} reviews={product.reviews} />
-    //         }
-    //     }
-    // }
+
+  
     render() {
 
         return (
-            // <Router>
                 
             <div>
                 <h2>search</h2>
@@ -61,7 +50,6 @@ class Search extends Component {
              </select> */}
                 <div>
                     {this.props.store.products ? this.renderProducts() : null}
-                    {/* {this.handleProductClick()} */}
                 </div>
             </div>
         )

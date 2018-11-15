@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 const axios = require('axios')
 
-
+@inject("store")
 @observer
 class ResultMovie extends Component {
 
@@ -12,7 +12,7 @@ class ResultMovie extends Component {
 
 
     componentDidMount = async () => {
-        let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.urlid}`) 
+        let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`) 
         this.data=dataApi.data  
     }
 
@@ -20,7 +20,7 @@ class ResultMovie extends Component {
 
     
     render() {
-        console.log(this.props.urlid)
+       let product= this.props.store.products[this.props.match.params.index]
         if(this.data){
             return (
                 <div className="container-movie">
@@ -43,9 +43,9 @@ class ResultMovie extends Component {
                     <h3>Genre:</h3> <p>{this.data.Genre}</p>
                 </div>
                 <div className="reviews-movie">
-                {/* <h2>Reviews:</h2>{this.props.reviews.map((r)=>{
+                <h2>Reviews:</h2>{product.reviews.map((r)=>{
                         return <p>{r.text}</p>
-                })} */}
+                })}
                 </div>
                 </div>
     );

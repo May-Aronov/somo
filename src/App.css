@@ -1,32 +1,305 @@
-.App {
-  text-align: center;
+.AppUl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  height:40pt;
+  position: relative;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+
+.AppLi {
+  float: left;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.AppLi a {
+  display: block;
   color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+/* Change the link color to #111 (black) on hover */
+.AppLi a:hover {
+  background-color: #111;
+}
+#search{
+  font-family: "03-streetlight-demo-version.otf	"
+}
+.add{
+  font-family: "03-streetlight-demo-version.otf	";
+}
+#home{
+  font-family: "03-streetlight-demo-version.otf	"
+  
+}
+#text{
+  width: 300px;
+  margin-left: 530px;
+  
+}
+#ex3{
+  transition: all .2s ease-in-out;
+transition: transform .2s; /* Animation */
+box-sizing: border-box;
+  width:200px;
+  margin-left: 20px;
+  display: inline;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+#ex3:hover {
+  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
-  to {
-    transform: rotate(360deg);
+#ex2{
+  transition: all .2s ease-in-out;
+transition: transform .2s; /* Animation */
+box-sizing: border-box;
+  width:400px;
+  height: 90px;
+  margin-left: 480px;
+
+}
+
+#ex2:hover {
+  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
+#ex1{
+  width:200px;
+  margin-left: 580px;
+  transition: all .2s ease-in-out;
+  transition: transform .2s; /* Animation */
+  box-sizing: border-box;
+}
+
+#ex1:hover {
+  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+#SOMO{
+  position: absolute;
+  right:2%;
+color: white;
+font-family: fantasy;
+display: inline-block;
+box-sizing: border-box;
+}
+
+.Linkim{
+  height: 10%;
+}
+#bookImage{
+margin-right: 600px;
+margin-top: 40px;
+border-radius: 8px;
+opacity: 0.95;
+}
+#movieImage{
+  margin-right: 600px;
+  margin-top: 47px;
+  border-radius: 8px;
+  opacity: 0.95;
+
+  }
+  
+  #detailsMovie{
+    margin-left: 630px;
+    margin-top: -290px;
+    color: rgb(192, 190, 190);
+    background-color: #111;
+    width:650px;
+    border-radius: 8px;
+    opacity: 0.86;
+    transition: all .2s ease-in-out;
+    transition: transform .2s; /* Animation */
+    box-sizing: border-box;
+    }
+
+#detailsMovie:hover {
+    transform: scale(1.13); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+  #detailsBook{
+    margin-left: 630px;
+    margin-top: -290px;
+    color: rgb(192, 190, 190);
+    background-color: #111;
+    width:650px;
+    border-radius: 8px;
+    opacity: 0.86;
+    transition: transform .2s; /* Animation */
+    box-sizing: border-box;
+  }
+  #detailsBook:hover {
+    transform: scale(1.17); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+  #review{
+    margin-left: 230px;
+    margin-top: -180px;
+    font-family: "03-streetlight-demo-version.otf	";
+width: 300px;
+height: auto;
+color: rgb(192, 190, 190);
+    background-color: #111;
+    border-radius: 8px;
+    opacity: 0.86;
+    transition: transform .2s; /* Animation */
+    box-sizing: border-box;
+}
+#review:hover {
+  transform: scale(1.17); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+#bookReview{
+  margin-top: 100px;
+  font-family: "03-streetlight-demo-version.otf	";
+margin-left: 230px;
+color: rgb(192, 190, 190);
+    background-color: #111;
+    border-radius: 8px;
+    opacity: 0.86;
+    width: 300px;
+    transition: transform .2s; /* Animation */
+    box-sizing: border-box;
+
+}
+#bookReview:hover {
+  transform: scale(1.17); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+#p{
+	background: linear-gradient(to right, rgb(0, 0, 0) 0%, #ffffff 100%);
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+
+#bookTitle{
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+#movieTitle{
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+#o{
+  font-family: "03-streetlight-demo-version.otf	";
+color: rgb(27, 27, 27);
+}
+#movieImage {
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+ 
+#movieImage:hover {
+  border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+     -moz-transform: rotate(360deg);
+       -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+#bookImage {
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+ 
+#bookImage:hover {
+  border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+     -moz-transform: rotate(360deg);
+       -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+#sign{
+  color: #333;
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+#yourReview{
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+#yourProduct{
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+#yourHashtags{
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+#buttonAdd{
+  width: 100px;
+  height: 45px;
+}
+
+
+.wrapper:hover .fa-stack{
+  transition: 0.9s;
+  transform: rotateY(360deg);
+}
+.wrapper{
+  display: inline-block;
+  width: 1000px;
+  margin-right: 70px;
+}
+
+
+#text1{
+
+transition: all .2s ease-in-out;
+transition: transform .2s; /* Animation */
+box-sizing: border-box;
+width: 250px;
+margin-left: 560px;
+}
+
+#text1:hover {
+transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.ofri {
+
+  position: relative;
+  display: inline-block;
+  font-family: "03-streetlight-demo-version.otf	";
+
+}
+
+.ofri .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: rgb(36, 36, 36);
+  opacity: 0.95;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-right: 300px;
+}
+
+.ofri .tooltiptext::after {
+  
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.ofri:hover .tooltiptext {
+  visibility: visible;
 }
