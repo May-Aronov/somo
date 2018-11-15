@@ -100,9 +100,9 @@ class AddReview extends Component {
                 {/* <input type="text" name="hashtags" onChange={this.inputChange} value={this.user.hashtags} />
                 <button >+</button>
                 <br></br>
-                <button>Add</button>
+                <button>Add</button> */}
                 <br />
-                <button type="button" onClick={this.submitForm} >Add </button> */}
+                 <button type="button" onClick={this.submitForm} >Add </button>
             </form>
         );
     }
