@@ -16,6 +16,7 @@ const Review = require('./Review')
 
 Product.hasMany(Hashtag)
 Product.hasMany(Review)
+Hashtag.belongsTo(Product)
 
 
 

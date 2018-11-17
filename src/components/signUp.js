@@ -1,34 +1,44 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import { observable, action } from "mobx";
 
 
+@inject("store")
+@observer
 class signUp extends Component {
-  render() {
-    return (
-      <div  className="Search" class="text-center">
-        <div className="inputSearch">
-        <h1 id="search">SIGN UP</h1>
-        <h3 class="text-center" id="sign">Username:</h3>
+  @observable user={UserName:"" ,img :""}
 
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Gender:</h3>
-        
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Email:</h3>
+  handleChange = (e) => {
+    this.user[e.target.name] = e.target.value
+  
+  }
 
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Password:</h3>
 
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Repeat Password:</h3>
+  onsubmit = () => {
+    console.log(this.user)
+    if(this.user.UserName && this.user.img )
+    this.props.store.addUser(this.user) 
+    else{
+      alert("missing details")
+    }   
+  }
 
-          <input id="text1"  class="form-control" type="text" />
+   
+    render() {
+      return (
+        <div className="Search" class="text-center">
+          <div className="inputSearch">
+            <h1 id="search">SIGN UP</h1>
+            <h3 class="text-center" id="sign">Username:</h3>
+            <input  name="UserName" value={this.user.UserName} onChange={this.handleChange} id="text1" class="form-control" type="text" />
+            <h1 id="search">image profile</h1>
+            <input  name="img"  value={this.user.img} onChange={this.handleChange} id="text1" class="form-control" type="text" />
+            <br></br>
+            <button type="sumbit"  onClick={this.onsubmit}class="btn btn-dark">sign-up</button>
+          </div>
 
-          <br></br>
-          <button class="btn btn-dark">Find</button>
         </div>
-        
-      </div>
-    )
+      )
     }
   }
-      export default signUp;
+  export default signUp;

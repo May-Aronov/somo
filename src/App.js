@@ -14,8 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
 
-// import ResultBook from './components/Result-Book'
-// import ResultMovie from './components/Result-movie'
+
 library.add(faUsers);
 @inject("store")
 @observer
@@ -29,14 +28,11 @@ class App extends Component {
               <li class="AppLi"><Link to="/home">Home</Link></li>
               <li class="AppLi"><Link to="/search">Search</Link></li>
               <li class="AppLi"><Link to="/addReview">Add Review</Link></li>
-              {/* <li class="AppLi"><Link to="/book">book</Link></li>
-              <li class="AppLi"><Link to="/movie">movie</Link></li> */}
               <li class="AppLi"><Link to="/signUp">signUp</Link></li>
-
-              <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue"/></li>
-              
+              <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue"/></li>            
             </ul>
           </div>
+          
           <Route path="/" exact component={Home} />
           <Route path="/search" exact component={Search} />
           <Route path="/addReview" exact component={AddReview} />
@@ -53,9 +49,6 @@ class App extends Component {
   }
 }
 
-
-// return <ResultMovie urlid={product.urlid} reviews={product.reviews} />
-// return <ResultBook urlid={product.urlid} reviews={product.reviews} />
 
 
 export default App;

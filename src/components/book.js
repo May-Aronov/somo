@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faEdit } from '@fortawesome/free-solid-svg-icons'
+import { observer, inject } from 'mobx-react';
+import { observable, action } from "mobx";
 library.add(faEdit);
 const axios = require('axios')
-
+@inject("store")
+@observer
 class ResultBook extends Component {
 
     @observable data = null
-    componentDidMount = async () => {https://www.googleapis.com/books/v1/volumes/XNiDPgAACAAJ
+    componentDidMount = async () => {
         let dataApi = await axios.get(`https://www.googleapis.com/books/v1/volumes/${this.props.match.params.urlid}`)
         this.data = dataApi.data
     }
