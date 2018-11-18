@@ -24,28 +24,29 @@ router.post('/newuser', (req, res) => {
         })
 })
 
-router.post(`/product/:productID`, (req, res) => {
-    let hashtag = req.body.hashtag
-    Hashtag.findOrCreate({ where: { name: hashtag, productId: req.params.productID} })
-        .spread(async (Hashtag, created) => {
-            if (created) {
-                let user = await User.get({
-                    plain: true
-                })
-                console.log(user)
-                res.status(201).send(user)
-            }                  
-        }).catch((error)=>{
-            res.status(500).send(error)  
-        })
-})
+// router.post(`/product/:productID`, (req, res) => {
+//     let hashtag = req.body.hashtag
+//     Hashtag.findOrCreate({ where: { name: hashtag, productId: req.params.productID} })
+//         .spread(async (Hashtag, created) => {
+//             if (created) {
+//                 let user = await User.get({
+//                     plain: true
+//                 })
+//                 console.log(user)
+//                 res.status(201).send(user)
+//             }                  
+//         }).catch((error)=>{
+//             res.status(500).send(error)  
+//         })
+// })
 
 
 
 router.post('/newreview/:userid', async (req, res) => {
     let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
     await Product
-        .findOrCreate({ where: { type: reqData.productType, name: reqData.productName, imgurl: reqData.productImgUrl, urlid: reqData.productUrlId } })
+        .findOrCreate({ where: { type: reqData.productType, name: reqData.productName, imgurl: reqData.productImgUrl
+            , urlid: reqData.productUrlId } })
         .spread(async (user, created) => {
             let product = await user.get({ plain: true })
             let review = await Review.create({ text: reqData.reviewText, productId: product.id,userId:req.params.userid })
@@ -90,7 +91,7 @@ router.get('/search/:SearchText/:filtername', (req, res) => {
             where: {
                 name: searchtext
             },
-            include: [{ model: Product, include: [Review, Hashtag] }]
+            include: [{ model: Product, include: [{model:Review, include: [User]  }  ,  {model:Hashtag}] }]
         }).then(product => {
             res.status(201).send(product)
         })

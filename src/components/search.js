@@ -42,7 +42,7 @@ class Search extends Component {
         console.log(this.openmodel)
     }
 
-    renderProducts = () => {movi
+    renderProducts = () => {
         return this.props.store.products.map((p, i) => {
             return (
                 <div className="card" onClick={() => { this.product = p }}>
