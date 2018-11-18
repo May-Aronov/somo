@@ -10,8 +10,6 @@ let UserFavorite = connection.connection.define("UserFavorite", {
     }
  })
 
- 
-
 
 
 module.exports = UserFavorite;
