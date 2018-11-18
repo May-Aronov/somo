@@ -15,6 +15,8 @@ class ResultMovie extends Component {
 
     componentDidMount = async () => {
         let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
+        // let product = this.props.store.products[this.props.match.params.index]
+        // let users = await axios.post(`http://localhost:8080/getUsers`,product.reviews)
         this.data = dataApi.data
     }
 
@@ -46,9 +48,12 @@ class ResultMovie extends Component {
                     </div>
 
                     <div className="reviews-movie">
-                        <h2>Reviews:</h2>{product.reviews.map((r) => {
-                            return <p>{r.text}</p>
+                        <h2 id="review">Reviews <FontAwesomeIcon icon="plus-circle" size="2x" /></h2>
+                        <div>
+                        {product.reviews.map((r) => {
+                            return <p>{r.user ? r.user.name : null } - {r.text}</p>
                         })}
+                        </div>
                     </div>
 
                 </div>

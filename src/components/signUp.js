@@ -1,34 +1,76 @@
 import React, { Component } from 'react';
+import Webcam from "react-webcam";
+import { observer, inject } from 'mobx-react';
+import { observable, action } from "mobx";
 
 
+@inject("store")
+@observer
 class signUp extends Component {
-  render() {
-    return (
-      <div  className="Search" class="text-center">
-        <div className="inputSearch">
-        <h1 id="search">SIGN UP</h1>
-        <h3 class="text-center" id="sign">Username:</h3>
+  @observable user={UserName:"" ,img :""}
+  @observable showCamera=false
 
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Gender:</h3>
-        
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Email:</h3>
+  handleChange = (e) => {
+    this.user[e.target.name] = e.target.value
+  
+  }
 
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Password:</h3>
+  @action TakeScreenShoot=()=>{
+    this.showCamera=!this.showCamera
+    
+  }
+  setRef = Webcam => {
+    this.Webcam = Webcam;
+  };
+ 
+  @action capture = () => {
+    const imageSrc = this.Webcam.getScreenshot();
+    this.user.img= imageSrc + ""
+  };
 
-          <input id="text1"  class="form-control" type="text" />
-          <h3 class="text-center" id="sign">Repeat Password:</h3>
 
-          <input id="text1"  class="form-control" type="text" />
+  onsubmit = () => {
+    console.log(this.user)
+    if(this.user.UserName && this.user.img )
+    this.props.store.addUser(this.user) 
+    else{
+      alert("missing details")
+    }   
+  }
 
-          <br></br>
-          <button class="btn btn-dark">Find</button>
+   
+    render() {
+      const videoConstraints = {
+        width: 1280,
+        height: 720,
+        facingMode: "user"
+      };
+      return (
+        <div className="Search" class="text-center">
+          <div className="inputSearch">
+            <h1 id="search">SIGN UP</h1>
+            <h3 class="text-center" id="sign">Username:</h3>
+            <input  name="UserName" value={this.user.UserName} onChange={this.handleChange} id="text1" class="form-control" type="text" />
+            <h1 id="search">image profile</h1>
+            <input  name="img"  value={this.user.img} onChange={this.handleChange} id="text1" class="form-control" type="text" />
+            <button onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
+            <br></br>
+            {this.showCamera ?  <div>
+        <Webcam
+          audio={false}
+          height={350}
+          ref={this.setRef}
+          screenshotFormat="image/jpeg"
+          width={350}
+          videoConstraints={videoConstraints}
+        />
+        <button onClick={this.capture}>Capture photo</button>
+      </div> : null}
+            <button type="sumbit"  onClick={this.onsubmit}class="btn btn-dark">sign-up</button>
+          </div>
+
         </div>
-        
-      </div>
-    )
+      )
     }
   }
-      export default signUp;
+  export default signUp;
