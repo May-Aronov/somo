@@ -15,6 +15,8 @@ class ResultMovie extends Component {
 
     componentDidMount = async () => {
         let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
+        // let product = this.props.store.products[this.props.match.params.index]
+        // let users = await axios.post(`http://localhost:8080/getUsers`,product.reviews)
         this.data = dataApi.data
     }
 

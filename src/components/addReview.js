@@ -68,6 +68,7 @@ class AddReview extends Component {
         }
         else if (this.user.productType == "movie") {
             try {
+                console.log('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
                 let Mydata = await axios.get('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
                 Mydata = Mydata.data
                 if (Mydata.Error) {
@@ -171,12 +172,13 @@ class AddReview extends Component {
 
 
     render() {
+        console.log(this.props.store.User)
         return (
             <div className="addReview" class="text-center">
 
                 <h1><p class="add">ADD NEW REVIEW</p></h1>
-       
-
+                <h4 id="yourProduct"> {this.props.store.CurrentUser.name}</h4>
+                <img src={this.props.store.CurrentUser.imgUrl} alt=""></img>
 
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
                     <option>Select</option>

@@ -13,7 +13,7 @@ class ResultBook extends Component {
     @observable data = null
     componentDidMount = async () => {
         let dataApi = await axios.get(`https://www.googleapis.com/books/v1/volumes/${this.props.match.params.urlid}`)
-        this.data = dataApi.data
+        this.data = dataApi.data.volumeInfo
     }
 
     render() {

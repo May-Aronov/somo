@@ -59,14 +59,15 @@ class reviewStore {
         }
     }
 
-    @action getUser = async (User) => {
+    @action getUser = async (user) => {
         try {
-            let user = await axios.get(`http://localhost:8080/user/${User}`)
-            this.saveToLocalStorage(user.data); 
+            let currentuser = await axios.get(`http://localhost:8080/user/${user}`)
+            this.saveToLocalStorage(currentuser.data);
+            this.CurrentUser = this.getFromLocalStorage()
+            alert("You are in, go create fun hashtags :)")
         }
-        catch(error){
-            console.log(error)
-            alert(" faild to sign in,wrong username!")
+        catch{
+            alert(" faild to sign in")
         }
     }
 }

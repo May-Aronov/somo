@@ -7,6 +7,7 @@ const Review = require('../data-access/Review')
 const User = require('../data-access/User')
 
 
+
 router.post('/newuser', (req, res) => {
     let name = req.body.UserName
     let imgUrl = req.body.Img
@@ -41,6 +42,19 @@ router.post('/newuser', (req, res) => {
 // })
 
 
+// router.post('/getUsers', (req, res) => {
+//     let reviews = req.body
+//     let users= []
+//     reviews.map((r)=>{
+//         User.findAll({ where: { id: r.userId },include: [Review] })
+//         .then(user => {
+//             users.push(user)
+//             res.status(201).send(user)
+//             }).catch((error)=>{
+//              res.status(500).send(error)  
+//          })
+//     })
+// })
 
 router.post('/newreview/:userid', async (req, res) => {
     let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
@@ -91,7 +105,7 @@ router.get('/search/:SearchText/:filtername', (req, res) => {
             where: {
                 name: searchtext
             },
-            include: [{ model: Product, include: [{model:Review, include: [User]  }  ,  {model:Hashtag}] }]
+            include: [{ model: Product, include: [{model:Review, include: [User]  } , {model:Hashtag}] }]
         }).then(product => {
             res.status(201).send(product)
         })

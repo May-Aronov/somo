@@ -44,6 +44,7 @@ class Search extends Component {
 
     renderProducts = () => {
         return this.props.store.products.map((p, i) => {
+            console.log(p.type)
             return (
                 <div className="card" onClick={() => { this.product = p }}>
                     <div onClick={this.hashtagModel} > <FontAwesomeIcon icon="plus-circle" size="2x" /></div>
@@ -56,7 +57,7 @@ class Search extends Component {
                                 <button type="button" className="btn cancel" onClick={this.hashtagModel}>Close</button>
                             </form>
                         </div>}
-                    <Link to={p.type = "movie" ? `/movie/${i}/${p.urlid}` : `/book/${i}/${p.urlid}`}>
+                    <Link to={p.type == "movie" ? `/movie/${i}/${p.urlid}` : `/book/${i}/${p.urlid}`}>
                         <img className="imgsearch" src={p.imgurl} alt="proudct img" />
                     </Link >
                     <div className="cardetails">
