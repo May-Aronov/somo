@@ -177,8 +177,8 @@ class AddReview extends Component {
             <div className="addReview" class="text-center">
 
                 <h1><p class="add">ADD NEW REVIEW</p></h1>
-                <h4 id="yourProduct"> {this.props.store.User.name}</h4>
-                <img src={this.props.store.User.imgUrl} alt=""></img>
+                <h4 id="yourProduct"> {this.props.store.CurrentUser.name}</h4>
+                <img src={this.props.store.CurrentUser.imgUrl} alt=""></img>
 
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
                     <option>Select</option>
