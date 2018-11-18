@@ -1,27 +1,37 @@
-
 import { observable, action } from "mobx";
 const axios = require('axios')
 
 class reviewStore {
     @observable products = null
-    @observable User =this.getFromLocalStorage()
-    STORAGE_ID = 'somo'
+    @observable CurrentUser =this.getFromLocalStorage()
 
     saveToLocalStorage(user) {
-        localStorage.setItem(this.STORAGE_ID, JSON.stringify(user));
+        localStorage.setItem('somo', JSON.stringify(user));
     }
 
     getFromLocalStorage() {
-        return JSON.parse(localStorage.getItem(this.STORAGE_ID) || "");
+        return JSON.parse(localStorage.getItem('somo') || null);
+    }
+    logout=()=>{
+        localStorage.clear()
     }
 
     @action addReview = async (user) => {
         try{
-        let newReview = await axios.post(`http://localhost:8080/newreview/${this.User[0].id}`, user)
+        let newReview = await axios.post(`http://localhost:8080/newreview/${this.CurrentUser.id}`, user)
         console.log(newReview)
         }
         catch{
             console.log("fail to add review")
+        }
+    }
+    AddHashtag=async(hashtag, productID) => {
+        try{
+        let newhashtag = await axios.post(`http://localhost:8080/product/${productID}/`, {hashtag:hashtag})
+        console.log(newhashtag)
+        }
+        catch{
+            console.log("fail to add hashtag")
         }
     }
 
@@ -32,6 +42,7 @@ class reviewStore {
                 products.data = products.data.map((data) => { return (data = data.product) })
             }
             this.products = products.data
+            console.log(products)
         }
         catch (error) {
             console.log("cant find any result")
@@ -51,10 +62,9 @@ class reviewStore {
     @action getUser = async (user) => {
         try {
             let currentuser = await axios.get(`http://localhost:8080/user/${user}`)
-            console.log(currentuser)
             this.saveToLocalStorage(currentuser.data);
-            this.User = this.getFromLocalStorage()
-            console.log("yhhh i'm in")
+            this.CurrentUser = this.getFromLocalStorage()
+            alert("You are in, go create fun hashtags :)")
         }
         catch{
             alert(" faild to sign in")
