@@ -156,10 +156,8 @@ class AddReview extends Component {
         else {
             arr.push( this.replace(data.authors))
         }
-
         arr.push( data.publishedDate.slice(0, 4))
         arr.push(this.replace(data.title))
-
         return arr
     }
 

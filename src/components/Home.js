@@ -18,6 +18,7 @@ class Home extends Component {
   onsubmit = async () => {
     if (this.user) {
  this.props.store.getUser(this.user)
+ this.user=""
     }
     else {
       alert("missing details")
@@ -56,7 +57,9 @@ class Home extends Component {
 
         <input class="form-control" id="ex1" type="text" /> */}
         <br></br>
+        {/* <Link to="/search">  */}
         <button type="sumbit" onClick={this.onsubmit} class="btn btn-dark">Log In</button>
+        {/* </Link> */}
         {/* {
           !this.props.store.CurrentUser &&
           <p className="error">Login failed</p>

@@ -25,21 +25,26 @@ router.post('/newuser', (req, res) => {
         })
 })
 
-// router.post(`/product/:productID`, (req, res) => {
-//     let hashtag = req.body.hashtag
-//     Hashtag.findOrCreate({ where: { name: hashtag, productId: req.params.productID} })
-//         .spread(async (Hashtag, created) => {
-//             if (created) {
-//                 let user = await User.get({
-//                     plain: true
-//                 })
-//                 console.log(user)
-//                 res.status(201).send(user)
-//             }                  
-//         }).catch((error)=>{
-//             res.status(500).send(error)  
-//         })
-// })
+
+
+router.post(`/product/:productID`, (req, res) => {
+    let hashtag = req.body.hashtag
+    Hashtag.findOrCreate({ where: { name: hashtag, productId: req.params.productID} })
+        .spread(async (Hashtag, created) => {
+            if (created) {
+                let Hashtag = await User.get({
+                    plain: true
+                })
+                console.log(Hashtag)
+                res.status(201).send(Hashtag)
+            }  
+            else{
+                res.status(500).send("already exist")   
+            }                
+        }).catch((error)=>{
+            res.status(500).send(error)  
+        })
+})
 
 
 // router.post('/getUsers', (req, res) => {
@@ -81,8 +86,14 @@ router.get('/user/:User', (req, res) => {
     User.findOne({
         where: {name: username}
     }).then(userr => {
+        if(userr){
         res.status(201).send(userr)
+        }
+        else{
+            res.status(500).send("not found")
+        }
     }).catch((error) => {
+        console.log(error)
         res.status(500).send(error)
     })     
 })

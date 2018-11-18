@@ -21,9 +21,9 @@ library.add(faUsers);
 @observer
 class App extends Component {
 
-//  logout=()=>{
-//   this.props.store.logout()
-//  }
+ logout=()=>{
+  this.props.store.logout()
+ }
 
 
   render() {
@@ -36,9 +36,9 @@ class App extends Component {
               <li class="AppLi"><Link to="/search">Search</Link></li>
               <li class="AppLi"><Link to="/addReview">Add Review</Link></li>
               <li class="AppLi"><Link to="/signUp">signUp</Link></li>
-              {/* <li class="AppLi user" onClick={this.logout}>user:
+              <li class="AppLi user" onClick={this.logout}>user:
               {this.props.store.CurrentUser && <b> {this.props.store.CurrentUser.name}</b>   } 
-              </li> */}
+              </li>
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue"/></li>            
             </ul>
           </div>
