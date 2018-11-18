@@ -154,7 +154,7 @@ class AddReview extends Component {
             })
         }
         else {
-            arr.push( this.replace(data.authors))
+            arr.push(this.replace(data.authors))
         }
         arr.push( data.publishedDate.slice(0, 4))
         arr.push(this.replace(data.title))
@@ -176,7 +176,7 @@ class AddReview extends Component {
 
                 <h1><p class="add">ADD NEW REVIEW</p></h1>
                 <h4 id="yourProduct"> {this.props.store.CurrentUser.name}</h4>
-                <img src={this.props.store.CurrentUser.imgUrl} alt=""></img>
+                <div><img src={this.props.store.CurrentUser.imgUrl} alt=""></img></div>
 
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
                     <option>Select</option>
