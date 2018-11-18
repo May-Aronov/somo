@@ -22,7 +22,6 @@ class AddReview extends Component {
 
 
     submitForm = () => {
-        this.user.userName.toLowerCase();
         this.user.productType.toLowerCase();
         this.user.productName.toLowerCase();
         let user = {
@@ -96,7 +95,7 @@ class AddReview extends Component {
     }
 
     @action addHashtag = () => {
-        this.user.hashtags.push(this.replace(this.user.newHashtag))
+        this.user.hashtags.push(this.user.newHashtag)
         this.user.newHashtag = ''
     }
 
@@ -109,7 +108,7 @@ class AddReview extends Component {
         let Genres = ''
         if (data.Genre.includes(",")) {
             Genres = data.Genre.split(", ").map((g) => {
-                arr.push(  g.toLowerCase())
+                arr.push(g.toLowerCase())
             })
         }
         else {
@@ -125,10 +124,10 @@ class AddReview extends Component {
 
         //award
         if (data.Awards.includes("Oscars")) {
-            arr.push("#oscars")
+            arr.push("oscars")
         }
         if (data.Awards.includes("Golden Globe")) {
-            arr.push("#golden_globe")
+            arr.push("golden_globe")
         }
 
         //director
@@ -142,8 +141,6 @@ class AddReview extends Component {
         }
 
         arr.push( this.replace(data.Title))
-
-        console.log(arr)
         return arr
     }
 
@@ -162,7 +159,6 @@ class AddReview extends Component {
         arr.push( data.publishedDate.slice(0, 4))
         arr.push(this.replace(data.title))
 
-        console.log(arr)
         return arr
     }
 
@@ -179,7 +175,7 @@ class AddReview extends Component {
             <div className="addReview" class="text-center">
 
                 <h1><p class="add">ADD NEW REVIEW</p></h1>
-                <h4 id="yourProduct"> Username:</h4>
+       
 
 
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
