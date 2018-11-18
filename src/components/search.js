@@ -35,11 +35,11 @@ class Search extends Component {
 
     renderProducts = () => {
         return this.props.store.products.map((p, i) => {
-            console.log(p)
+            console.log(p.type)
             return (
                 
                     <div className="card" onClick={() => { this.product = p }}>
-                    <Link to={p.type = "movie" ? `/movie/${i}/${p.urlid}` : `/book/${i}/${p.urlid}`}>
+                    <Link to={p.type == "movie" ? `/movie/${i}/${p.urlid}` : `/book/${i}/${p.urlid}`}>
                         <img className="imgsearch" src={p.imgurl} alt="proudct img" />
                         </Link >
                         <div className="cardetails">

@@ -4,20 +4,20 @@ const axios = require('axios')
 
 class reviewStore {
     @observable products = null
-    // @observable User =this.getFromLocalStorage()
-    // STORAGE_ID = 'somo'
+    @observable User =this.getFromLocalStorage()
+    STORAGE_ID = 'somo'
 
-    // saveToLocalStorage(user) {
-    //     localStorage.setItem(this.STORAGE_ID, JSON.stringify(user));
-    // }
+    saveToLocalStorage(user) {
+        localStorage.setItem(this.STORAGE_ID, JSON.stringify(user));
+    }
 
-    // getFromLocalStorage() {
-    //     return JSON.parse(localStorage.getItem(this.STORAGE_ID) || "");
-    // }
+    getFromLocalStorage() {
+        return JSON.parse(localStorage.getItem(this.STORAGE_ID) || "");
+    }
 
     @action addReview = async (user) => {
         try{
-        let newReview = await axios.post(`http://localhost:8080/newreview/${this.User.id}`, user)
+        let newReview = await axios.post(`http://localhost:8080/newreview/${this.User[0].id}`, user)
         console.log(newReview)
         }
         catch{
@@ -38,27 +38,28 @@ class reviewStore {
             this.products = null
         }
     }
-    // @action addUser = async (user) => {
-    //     try {
-    //         let newUser = await axios.post(`http://localhost:8080/newuser`, { UserName: user.UserName ,Img:user.img  })
-    //         alert("u are successfully sign up , now go and sign in")
-    //     }
-    //     catch{
-    //         alert(" pls try to sign up again,user name already exists")
-    //     }
-    // }
+    @action addUser = async (user) => {
+        try {
+            let newUser = await axios.post(`http://localhost:8080/newuser`, { UserName: user.UserName ,Img:user.img  })
+            alert("u are successfully sign up , now go and sign in")
+        }
+        catch{
+            alert(" pls try to sign up again,user name already exists")
+        }
+    }
 
-    // @action getUser = async (user) => {
-    //     try {
-    //         let currentuser = await axios.get(`http://localhost:8080/user/${user}`)
-    //         console(currentuser)
-    //         this.saveToLocalStorage(currentuser.data);
-    //        console.log("yhhh i'm in")
-    //     }
-    //     catch{
-    //         alert(" faild to sign in")
-    //     }
-    // }
+    @action getUser = async (user) => {
+        try {
+            let currentuser = await axios.get(`http://localhost:8080/user/${user}`)
+            console.log(currentuser)
+            this.saveToLocalStorage(currentuser.data);
+            this.User = this.getFromLocalStorage()
+            console.log("yhhh i'm in")
+        }
+        catch{
+            alert(" faild to sign in")
+        }
+    }
 }
 
 const store = new reviewStore();

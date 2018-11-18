@@ -22,7 +22,7 @@ class AddReview extends Component {
 
 
     submitForm = () => {
-        this.user.userName.toLowerCase();
+        // this.user.userName.toLowerCase();
         this.user.productType.toLowerCase();
         this.user.productName.toLowerCase();
         let user = {
@@ -69,6 +69,7 @@ class AddReview extends Component {
         }
         else if (this.user.productType == "movie") {
             try {
+                console.log('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
                 let Mydata = await axios.get('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
                 Mydata = Mydata.data
                 if (Mydata.Error) {
@@ -175,12 +176,13 @@ class AddReview extends Component {
 
 
     render() {
+        console.log(this.props.store.User)
         return (
             <div className="addReview" class="text-center">
 
                 <h1><p class="add">ADD NEW REVIEW</p></h1>
-                <h4 id="yourProduct"> Username:</h4>
-
+                <h4 id="yourProduct"> {this.props.store.User[0].name}</h4>
+                <img src={this.props.store.User[0].imgUrl} alt=""></img>
 
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
                     <option>Select</option>

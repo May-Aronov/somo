@@ -6,38 +6,50 @@ const Hashtag = require('../data-access/Hashtag')
 const Review = require('../data-access/Review')
 const User = require('../data-access/User')
 
-// router.get('/user/:user', (req, res) => {
-//     let name = req.params.user
-//     console.log( name)
-//     User.findAll({
-//         where: {name: name}
-//     }).then(userr => {
-//         res.status(201).send(userr)
-//         console.log(user)
-//     }).catch((error) => {
-//         res.status(500).send(error)
-//     })
+router.get('/user/:user', (req, res) => {
+    let name = req.params.user
+    console.log( name)
+    User.findAll({ 
+        where: {name: name}
+    }).then(userr => {
+        res.status(201).send(userr)
+        console.log(user)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
       
+})
+
+router.post('/newuser', (req, res) => {
+    let name = req.body.UserName
+    let imgUrl = req.body.Img
+       User.findOrCreate({ where: { name: name, imgUrl: imgUrl } })
+        .spread(async (User, created) => {
+            if (created) {
+                let user = await User.get({
+                    plain: true
+                })
+                console.log(user)
+                res.status(201).send(user)
+            }                  
+        }).catch((error)=>{
+            res.status(500).send(error)  
+        })
+})
+
+// router.post('/getUsers', (req, res) => {
+//     let reviews = req.body
+//     let users= []
+//     reviews.map((r)=>{
+//         User.findAll({ where: { id: r.userId },include: [Review] })
+//         .then(user => {
+//             users.push(user)
+//             res.status(201).send(user)
+//             }).catch((error)=>{
+//              res.status(500).send(error)  
+//          })
+//     })
 // })
-
-// router.post('/newuser', (req, res) => {
-//     let name = req.body.UserName
-//     let imgUrl = req.body.Img
-//        User.findOrCreate({ where: { name: name, imgUrl: imgUrl } })
-//         .spread(async (User, created) => {
-//             if (created) {
-//                 let user = await User.get({
-//                     plain: true
-//                 })
-//                 console.log(user)
-//                 res.status(201).send(user)
-//             }                  
-//         }).catch((error)=>{
-//             res.status(500).send(error)  
-//         })
-// })
-
-
 
 router.post('/newreview/:userid', async (req, res) => {
     let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
@@ -45,10 +57,10 @@ router.post('/newreview/:userid', async (req, res) => {
         .findOrCreate({ where: { type: reqData.productType, name: reqData.productName, imgurl: reqData.productImgUrl, urlid: reqData.productUrlId } })
         .spread(async (user, created) => {
             let product = await user.get({ plain: true })
-            let review = await Review.create({ text: reqData.reviewText, productId: product.id })
+            let review = await Review.create({ text: reqData.reviewText, productId: product.id, userId: req.params.userid})
             await reqData.hashtags.forEach((h) => {
                 Hashtag
-                    .findOrCreate({ where: { name: h, productId: product.id,userId: req.params.userid} })
+                    .findOrCreate({ where: { name: h, productId: product.id} })
                     .spread(async (hashtag, created) => {
 
                     })
@@ -66,8 +78,8 @@ router.get('/search/:SearchText/:filtername', (req, res) => {
         Product.findAll({
             where: { name: searchtext, type: filtername },
             include: [Review, Hashtag]
-        }).then(product => {
-            res.status(201).send(product)
+        }).then(products => {
+            res.status(201).send(products)
         }).catch((error) => {
             res.status(500).send(error)
         })
