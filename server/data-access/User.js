@@ -8,7 +8,7 @@ const UserFavorite=('./UserFavorite')
 
 let User = connection.connection.define("user", {
     name: { type: Sequelize.STRING },
-    imgUrl:{ type: Sequelize.STRING }
+    imgUrl:{ type: Sequelize.STRING(50000) }
 })
 
 // Review.belongsTo(User)
