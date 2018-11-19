@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Link, Route,Redirect } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -82,7 +83,7 @@ class AddReview extends Component {
                     alert("found :)")
                 }
             }
-            catch(error){
+            catch (error) {
                 console.log(error)
                 alert("api doesnt work")
             }
@@ -102,7 +103,7 @@ class AddReview extends Component {
 
     findHashtagMovie = (data) => {
         let arr = []
-        let year =  + data.Year
+        let year = + data.Year
         arr.push(year)
 
         //gneres
@@ -113,14 +114,14 @@ class AddReview extends Component {
             })
         }
         else {
-            Genres =  data.Genre.toLowerCase()
+            Genres = data.Genre.toLowerCase()
             arr.push(Genres)
         }
 
 
         //act
         data.Actors.split(", ").map((a) => {
-            arr.push( this.replace(a))
+            arr.push(this.replace(a))
         })
 
         //award
@@ -134,14 +135,14 @@ class AddReview extends Component {
         //director
         if (data.Director.includes(",")) {
             data.Director.map((d) => {
-                arr.push( this.replace(d))
+                arr.push(this.replace(d))
             })
         }
         else {
-            arr.push( this.replace(data.Director))
+            arr.push(this.replace(data.Director))
         }
 
-        arr.push( this.replace(data.Title))
+        arr.push(this.replace(data.Title))
         return arr
     }
 
@@ -150,16 +151,14 @@ class AddReview extends Component {
         let arr = []
         if (Array.isArray(data.authors)) {
             data.authors.map((d) => {
-                arr.push( this.replace(d))
+                arr.push(this.replace(d))
             })
         }
         else {
-            arr.push( this.replace(data.authors))
+            arr.push(this.replace(data.authors))
         }
-
-        arr.push( data.publishedDate.slice(0, 4))
+        arr.push(data.publishedDate.slice(0, 4))
         arr.push(this.replace(data.title))
-
         return arr
     }
 
@@ -172,13 +171,24 @@ class AddReview extends Component {
 
 
     render() {
-        console.log(this.props.store.User)
+        // if(!this.props.store.CurrentUser){
+        //     alert("u need to sign in or signup")
+        //     return <Redirect to='/home' />
+        // }
+        if(!this.props.store.CurrentUser){
+            this.props.history.push("/home");
+            alert("u need to sign in or signup");
+        }
         return (
             <div className="addReview" class="text-center">
 
                 <h1><p class="add">ADD NEW REVIEW</p></h1>
-                <h4 id="yourProduct"> {this.props.store.CurrentUser.name}</h4>
-                <img src={this.props.store.CurrentUser.imgUrl} alt=""></img>
+
+                {this.props.store.CurrentUser &&
+                    <div>
+                        <h4 id="yourProduct"> {this.props.store.CurrentUser.name}</h4>
+                        <img src={this.props.store.CurrentUser.imgUrl} alt=""></img>
+                    </div>}
 
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
                     <option>Select</option>
