@@ -20,6 +20,13 @@ class Search extends Component {
     @observable openmodel = false
     @observable hashtag=null
 
+
+
+    // componentDidMount = async () => {
+    //     this.props.store.getfilterReview()
+    // }
+
+
     hashtagClick = (name) => {
         console.log(name)
         this.SearchText = name
@@ -31,12 +38,15 @@ class Search extends Component {
         this[e.target.name] = e.target.value
         this.props.store.filterReview(this.SearchText, this.FilterName)
     }
+
     ChangeHashtag = (e) => {
         this.hashtag = e.target.value
     }
+
     submitHashtag=(movieId,movieindex) =>{
     this.props.store.AddHashtag(this.hashtag, movieId,movieindex)
     }
+
     hashtagModel = () => {
         this.openmodel = !this.openmodel
         console.log(this.openmodel)

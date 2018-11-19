@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
-import AddFollow from "./AddFollow"
+import AddFollow from "./AddFollow";
+
 library.add(faStar, faEdit);
-const axios = require('axios')
+const axios = require('axios');
 
 @inject("store")
-@observer
+@observer  
+
 class ResultMovie extends Component {
+
     @observable data = null
     @observable product = null
 
-
     componentDidMount = async () => {
         let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
-        this.product = this.props.store.products[this.props.match.params.index]
-        console.log(this.props.store.products)
-        // let users = await axios.post(`http://localhost:8080/getUsers`,product.reviews)
         this.data = dataApi.data
+        this.product= await this.props.store.getReviewproduct(this.props.match.params.urlid)
     }
 
     render() {
@@ -68,8 +68,7 @@ class ResultMovie extends Component {
         else {
             return (<div></div>)
         }
-
     }
 }
 
-export default ResultMovie
+export default ResultMovie;

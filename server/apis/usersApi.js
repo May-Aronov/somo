@@ -75,6 +75,8 @@ router.post(`/product/:productID`, (req, res) => {
 //     })
 // })
 
+
+
 router.post('/newreview/:userid', async (req, res) => {
     let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
     await Product
@@ -99,7 +101,8 @@ router.post('/newreview/:userid', async (req, res) => {
     res.status(500).send(err);
 })
 
-router.get('/user/:User', (req, res) => {
+
+router.get('/user/:User', (req, res) =>{
     let username = req.params.User
     User.findOne({
         where: { name: username },
@@ -107,7 +110,7 @@ router.get('/user/:User', (req, res) => {
             model: User, as: "favorite"
         }]
     }).then(userr => {
-        if (userr) {
+        if (userr){
             console.log(userr)
             res.status(201).send(userr)
         }
@@ -119,6 +122,21 @@ router.get('/user/:User', (req, res) => {
         res.status(500).send(error)
     })
 })
+
+router.get('/product/:productname', (req, res) => {
+    let productname = req.params.productname;
+        Product.findOne({
+            where: {name: productname},
+            include: [{ model: Review, include: [{ model: User }] }, { model: Hashtag }]
+        }).then(product => {
+            console.log(product)
+            res.status(201).send(product)
+
+        }).catch((error) => {
+            res.status(500).send(error) 
+})
+})
+
 
 router.get('/search/:SearchText/:filtername', (req, res) => {
     let searchtext = req.params.SearchText;
