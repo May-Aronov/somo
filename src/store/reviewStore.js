@@ -3,7 +3,7 @@ const axios = require('axios')
 
 class reviewStore {
     @observable products = null
-    @observable CurrentUser =this.getFromLocalStorage()
+    @observable CurrentUser = this.getFromLocalStorage()
 
     saveToLocalStorage(user) {
         localStorage.setItem('somo', JSON.stringify(user));
@@ -12,23 +12,38 @@ class reviewStore {
     getFromLocalStorage() {
         return JSON.parse(localStorage.getItem('somo') || null);
     }
-    logout=()=>{
+    logout = () => {      
         localStorage.clear()
+        this.CurrentUser=null;   
     }
-
-    @action addReview = async (user) => {
-        try{
-        let newReview = await axios.post(`http://localhost:8080/newreview/${this.CurrentUser.id}`, user)
-        console.log(newReview)
+    @action  addFavorite= async (favoriteid) => {
+        try {
+            let newfavorite= await axios.post(`http://localhost:8080/user/${this.CurrentUser.id}/favroite/${favoriteid}`, {})
+            console.log(this.CurrentUser)
+           this.CurrentUser.favorite.push(newfavorite.data)
         }
         catch{
             console.log("fail to add review")
         }
     }
-    AddHashtag=async(hashtag, productID) => {
-        try{
-        let newhashtag = await axios.post(`http://localhost:8080/product/${productID}/`, {hashtag:hashtag})
-        console.log(newhashtag)
+    @action addReview = async (user) => {
+        try {
+            let newReview = await axios.post(`http://localhost:8080/newreview/${this.CurrentUser.id}`, user)
+            console.log(newReview)
+        }
+        catch{
+            console.log("fail to add review")
+        }
+    }
+
+    @action AddHashtag = async (hashtag, productID,productindex) => {
+        try {
+            console.log(hashtag, productID)
+            let newhashtag = await axios.post(`http://localhost:8080/product/${productID}/`, { hashtag: hashtag })
+            console.log(newhashtag, this.products)
+
+            this.products[productindex].hashtags.push(newhashtag.data) 
+           
         }
         catch{
             console.log("fail to add hashtag")
@@ -37,6 +52,7 @@ class reviewStore {
 
     @action filterReview = async (SearchText, filtername) => {
         try {
+            console.log(filtername)
             let products = await axios.get(`http://localhost:8080/search/${SearchText}/${filtername}`)
             if (filtername == 'hashtags') {
                 products.data = products.data.map((data) => { return (data = data.product) })
@@ -51,7 +67,7 @@ class reviewStore {
     }
     @action addUser = async (user) => {
         try {
-            let newUser = await axios.post(`http://localhost:8080/newuser`, { UserName: user.UserName ,Img:user.img  })
+            let newUser = await axios.post(`http://localhost:8080/newuser`, { UserName: user.UserName, Img: user.img })
             alert("u are successfully sign up , now go and sign in")
         }
         catch{
@@ -62,9 +78,10 @@ class reviewStore {
     @action getUser = async (user) => {
         try {
             let currentuser = await axios.get(`http://localhost:8080/user/${user}`)
-            this.saveToLocalStorage(currentuser.data);
-            this.CurrentUser = this.getFromLocalStorage()
-            alert("You are in, go create fun hashtags :)")
+                this.saveToLocalStorage(currentuser.data);
+                console.log(currentuser.data)
+                this.CurrentUser = this.getFromLocalStorage()
+                // alert("You are in, go create fun hashtags :)")
         }
         catch{
             alert(" faild to sign in")

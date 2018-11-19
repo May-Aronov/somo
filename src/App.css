@@ -345,6 +345,11 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
   	width: 100%;
 		height:250px;
 } 
+.userimgnav{
+  border-radius: 50%;
+  width: 40px;
+  height:40px;
+}
 
 .ReviewCount{
   width: 300px;
