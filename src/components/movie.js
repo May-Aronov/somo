@@ -12,18 +12,20 @@ const axios = require('axios')
 @observer
 class ResultMovie extends Component {
     @observable data = null
+    @observable product = null
 
 
     componentDidMount = async () => {
         let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
-        // let product = this.props.store.products[this.props.match.params.index]
+        this.product = this.props.store.products[this.props.match.params.index]
+        console.log(this.props.store.products)
         // let users = await axios.post(`http://localhost:8080/getUsers`,product.reviews)
         this.data = dataApi.data
     }
 
     render() {
-        let product = this.props.store.products[this.props.match.params.index]
-        if (this.data) {
+        // let product = this.props.store.products[this.props.match.params.index]
+        if (this.data && this.product) {
             return (
                 <div className="container-movie text-center">
                     <div className="nameMovie">
@@ -51,7 +53,7 @@ class ResultMovie extends Component {
                     <div className="reviews-movie">
                         <h2 id="review">Reviews <FontAwesomeIcon icon="plus-circle" size="2x" /></h2>
                         <div>
-                        {product.reviews.map((r) => {
+                        {this.product.reviews.map((r) => {
                             return <div>
                                 <AddFollow props favoriteid={r.user.id}/>
                                 <span>{r.user ? r.user.name : null }</span> -  <span>{r.text}</span>

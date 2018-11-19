@@ -87,10 +87,10 @@ class Search extends Component {
         //     alert("u need to sign in or signup")
         //     return <Redirect to='/home' />
         // }
-        if(!this.props.store.CurrentUser){
-            this.props.history.push("/home");
-            alert("u need to sign in or signup");
-          }
+        // if(!this.props.store.CurrentUser){
+        //     this.props.history.push("/home");
+        //     alert("u need to sign in or signup");
+        //   }
         return (
             <div className="Search" className="text-center">
                 <div className="inputSearch">

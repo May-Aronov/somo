@@ -2,7 +2,7 @@ import { observable, action } from "mobx";
 const axios = require('axios')
 
 class reviewStore {
-    @observable products = null
+    @observable products = []
     @observable CurrentUser = this.getFromLocalStorage()
 
     saveToLocalStorage(user) {

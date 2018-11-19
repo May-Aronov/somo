@@ -23,7 +23,7 @@ class AddFollow extends Component {
   }
 
   addFavorite = (favoriteid) => {
-    alert("dfgdfg")
+    // alert("dfgdfg")
       this.props.store.addFavorite(favoriteid)
   }
 
