@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
+import AddFollow from "./AddFollow"
 library.add(faStar, faEdit);
 const axios = require('axios')
 
@@ -51,7 +52,10 @@ class ResultMovie extends Component {
                         <h2 id="review">Reviews <FontAwesomeIcon icon="plus-circle" size="2x" /></h2>
                         <div>
                         {product.reviews.map((r) => {
-                            return <p>{r.user ? r.user.name : null } - {r.text}</p>
+                            return <div>
+                                <AddFollow props favoriteid={r.user.id}/>
+                                <span>{r.user ? r.user.name : null }</span> -  <span>{r.text}</span>
+                            </div>
                         })}
                         </div>
                     </div>

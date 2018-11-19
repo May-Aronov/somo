@@ -2,7 +2,7 @@
 const connection=require('./da') 
 const Sequelize = require('sequelize');
 const Review = require('./Review')
-const UserFavorite=('./UserFavorite')
+const UserFavorite=require('./UserFavorite')
 
 
 
@@ -11,9 +11,9 @@ let User = connection.connection.define("user", {
     imgUrl:{ type: Sequelize.STRING(50000) }
 })
 
-// Review.belongsTo(User)
 
-// User.hasMany(User, {as: 'following'})
+
+
 
 User.belongsToMany(User,
     { through: UserFavorite, as: 'user', foreignKey: 'favoriteId' })
@@ -22,5 +22,6 @@ User.belongsToMany(User,
 
 
 User.hasMany(Review)
+Review.belongsTo(User)
 
 module.exports =User;

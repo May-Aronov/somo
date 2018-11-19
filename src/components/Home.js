@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import createHistory from 'history/createBrowserHistory'
-import { BrowserRouter as Router, Link, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Redirect, withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 
@@ -10,6 +10,9 @@ import { observable, action } from "mobx";
 class Home extends Component {
   @observable user = null
 
+
+
+
   handleChange = (e) => {
     this.user = e.target.value
   }
@@ -17,25 +20,25 @@ class Home extends Component {
 
   onsubmit = async () => {
     if (this.user) {
- this.props.store.getUser(this.user)
- this.user=""
+      await this.props.store.getUser(this.user)
+      if(this.props.store.CurrentUser){
+        this.props.history.push("/search");
+      }
     }
     else {
       alert("missing details")
     }
   }
 
-//   async componentWillReact() {
-//     if(this.props.store.CurrentUser) {
-//         history.push('/search')
-//     }
-// }
+  //   async componentWillReact() {
+  //     if(this.props.store.CurrentUser) {
+  //         history.push('/search')
+  //     }
+  // }
 
   render() {
-    // if (this.user) {
-    //  return <Redirect to='/search' />
-    // }
- 
+
+
     return (
       <div className="Home" class="text-center" >
 

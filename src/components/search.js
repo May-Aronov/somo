@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route,Redirect } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 // import ResultMovie from './Result-movie';
@@ -43,8 +43,12 @@ class Search extends Component {
     }
 
     renderProducts = () => {
+        if(!this.props.store.CurrentUser){
+            this.props.history.push("/home");
+            alert("u need to sign in or signup");
+        }
         return this.props.store.products.map((p, i) => {
-            console.log(p.type)
+
             return (
                 <div className="card" onClick={() => { this.product = p }}>
                     <div onClick={this.hashtagModel} > <FontAwesomeIcon icon="plus-circle" size="2x" /></div>
@@ -54,7 +58,7 @@ class Search extends Component {
                             <form className="form-container" id="myForm" >
                                 <label name="hashtag"><b>hashtag</b></label>
                                 <input value={this.hashtag} onChange={this.ChangeHashtag} type="text" placeholder="Enter hashtag" name="hashtag" required />
-                                <button onClick={()=> this.submitHashtag(p.id,i)} type="submit" className="btn">Add</button>
+                                <button onClick={()=> this.submitHashtag(p.id,i)} type="button" className="btn">Add</button>
                                 <button type="button" className="btn cancel" onClick={this.hashtagModel}>Close</button>
                             </form>
                         </div>}
@@ -79,6 +83,14 @@ class Search extends Component {
 
 
     render() {
+        // if(!this.props.store.CurrentUser){
+        //     alert("u need to sign in or signup")
+        //     return <Redirect to='/home' />
+        // }
+        if(!this.props.store.CurrentUser){
+            this.props.history.push("/home");
+            alert("u need to sign in or signup");
+          }
         return (
             <div className="Search" className="text-center">
                 <div className="inputSearch">
