@@ -55,7 +55,7 @@ class reviewStore {
 
     @action getReviewproduct = async (productname) => {
         try {
-            let product = await axios.get(`http://localhost:8080/product/${productname}`) 
+            let product = await axios.get(`http://localhost:8080/topproducts'`) 
             console.log(product.data)
             return product.data;  
             

@@ -6,7 +6,7 @@ const Hashtag = require('../data-access/Hashtag')
 const Review = require('../data-access/Review')
 const User = require('../data-access/User')
 const UserFavorite = require('../data-access/UserFavorite')
-
+const Sequelize = require('sequelize');
 
 router.post('/newuser', (req, res) => {
     let name = req.body.UserName
@@ -141,6 +141,42 @@ router.get('/product/:productname', (req, res) => {
         res.status(500).send(error)
     })
 })
+
+router.get('/topproducts', (req, res) => {
+Product.findAll({
+    attributes: [
+        'name','imgurl',
+        [Sequelize.literal('(SELECT COUNT(*) FROM Review WHERE Review.productId = Product.id)'), 'ReviewCount']
+    ],
+    order: [[Sequelize.literal('ReviewCount'), 'DESC']]
+})
+  .then(product => {
+        console.log(product)
+        res.status(201).send(product)
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+})
+
+
+
+
+  
+
+Product.findAll({
+    attributes: {
+      include: [
+        [Sequelize.fn('COUNT', Sequelize.col('Review. productId')), 'count']
+      ]
+    },
+    include: [{
+      attributes: [],
+      model:Review,
+      duplicating: false,
+      required: false
+    }],
+    order: [['count', 'DESC']]
+  })
 
 
 router.get('/search/:SearchText/:filtername', (req, res) => {

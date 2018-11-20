@@ -8,7 +8,7 @@ import Loader from "./Loader"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHashtag } from '@fortawesome/free-solid-svg-icons'
-
+const axios = require('axios')
 
 library.add(faHashtag);
 
@@ -24,9 +24,17 @@ class Search extends Component {
 
 
 
-    // componentDidMount = async () => {
-    //     this.props.store.getfilterReview()
-    // }
+    componentDidMount = async () => {
+        try {
+            let product = await axios.get(`http://localhost:8080/topproducts`) 
+            console.log(product.data)
+            // return product.data;         
+        }
+        catch (error) {
+            console.log(error)
+            // console.log("cant find any result")
+        }
+    }
 
 
     hashtagClick = (name) => {
