@@ -6,7 +6,7 @@ import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import Search from "./components/search"
 import Home from "./components/Home"
-import Feed from "./components/Feed"
+import Feed from "./components/feed"
 import AddReview from "./components/addReview"
 import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
