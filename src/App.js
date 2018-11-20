@@ -6,11 +6,12 @@ import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import Search from "./components/search"
 import Home from "./components/Home"
-import Feed from "./components/Feed"
+import Feed from "./components/feed"
 import AddReview from "./components/addReview"
 import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
 import signUp from "./components/signUp"
+
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -52,13 +53,12 @@ class App extends Component {
               
               {this.props.store.CurrentUser && 
                   <li className="AppLi user" onClick={this.logout}> 
-               <p > User:  <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt=""/>- {this.props.store.CurrentUser.name} </p>
+               <p >  <i id="online-dot">&middot;</i> <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt=""/>   {this.props.store.CurrentUser.name} </p>
                 </li>}
 
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>
           </div>
-          <Route path="/feed" exact component={Feed} />
           <Route path="/" exact component={Home} />
           <Route path="/search" exact component={Search} />
           <Route path="/addReview" exact component={AddReview} />
@@ -66,7 +66,8 @@ class App extends Component {
           <Route path="/movie/:index/:urlid" exact render={({ match }) => <ResultMovie match={match} />} />
           <Route path="/book/:index/:urlid" exact render={({ match }) => <ResultBook match={match} />} />
           <Route path="/signUp" exact component={signUp} />
-
+          <Route path="/feed" exact component={Feed} />
+          
         </div>
       </Router>
 

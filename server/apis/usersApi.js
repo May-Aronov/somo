@@ -11,7 +11,12 @@ const Sequelize = require('sequelize');
 router.post('/newuser', (req, res) => {
     let name = req.body.UserName
     let imgUrl = req.body.Img
-    User.findOrCreate({ where: { name: name, imgUrl: imgUrl } })
+    User.findOrCreate({
+            where: {
+                name: name,
+                imgUrl: imgUrl
+            }
+        })
         .spread(async (User, created) => {
             if (created) {
                 let user = await User.get({
@@ -28,14 +33,21 @@ router.post('/newuser', (req, res) => {
 router.post('/user/:userID/favroite/:favroiteID', (req, res) => {
     let userid = req.params.userID
     let favroiteid = req.params.favroiteID
-    UserFavorite.create({ favoriteId: favroiteid, userId: userid }).then((user) => {
-        User.findOne({ where: { id: favroiteid } }).then(favorite => {
-            console.log(favorite)
-            res.status(201).send(favorite)
-        }).catch((error) => {
-            res.status(500).send(error)
+    UserFavorite.create({
+            favoriteId: favroiteid,
+            userId: userid
+        }).then((user) => {
+            User.findOne({
+                where: {
+                    id: favroiteid
+                }
+            }).then(favorite => {
+                console.log(favorite)
+                res.status(201).send(favorite)
+            }).catch((error) => {
+                res.status(500).send(error)
+            })
         })
-    })
         .catch((error) => {
             res.status(500).send(error)
         })
@@ -43,7 +55,12 @@ router.post('/user/:userID/favroite/:favroiteID', (req, res) => {
 
 router.post(`/product/:productID`, (req, res) => {
     let hashtag = req.body.hashtag
-    Hashtag.findOrCreate({ where: { name: hashtag, productId: req.params.productID } })
+    Hashtag.findOrCreate({
+            where: {
+                name: hashtag,
+                productId: req.params.productID
+            }
+        })
         .spread(async (hashtag, created) => {
             if (created) {
                 let Hashtag = await hashtag.get({
@@ -51,8 +68,7 @@ router.post(`/product/:productID`, (req, res) => {
                 })
                 console.log(Hashtag)
                 res.status(201).send(Hashtag)
-            }
-            else {
+            } else {
                 res.status(500).send("already exist")
             }
         }).catch((error) => {
@@ -110,16 +126,17 @@ router.post('/newreview/:userid', async (req, res) => {
 router.get('/user/:User', (req, res) => {
     let username = req.params.User
     User.findOne({
-        where: { name: username },
+        where: {
+            name: username
+        },
         include: [{
-            model: User, as: "favorite"
+            model: User,
+            as: "favorite"
         }]
     }).then(userr => {
         if (userr) {
-            console.log(userr)
             res.status(201).send(userr)
-        }
-        else {
+        } else {
             res.status(500).send("not found")
         }
     }).catch((error) => {
@@ -128,10 +145,46 @@ router.get('/user/:User', (req, res) => {
     })
 })
 
-router.get('/product/:productname', (req, res) => {
-    let productname = req.params.productname;
+router.get('/myfeed/:userID', async (req, res) => {
+    // let today =new Date()
+    // today.setMonth(today.getMonth() - 1)
+    // let now=new Date()
+    // let beforeMonth=today.toISOString().slice(0, 19).replace('T', ' ')
+    // let thisTime=now.toISOString().slice(0, 19).replace('T', ' ')
+
+    let userID = req.params.userID;
+        User.findOne({
+            where: {
+                id: userID
+            },
+            include: [{
+                model:User,
+                as :"favorite", 
+                attributes: ['id', 'name', 'imgUrl'],  
+                order: [
+                    [Review, 'createdAt', 'DEC']
+                  ],
+                include:[{
+                    model: Review,
+                    order: [['createdAt','DEC']],
+                    attributes: ['id', 'text', 'createdAt'],
+                    include: [{
+                        model: Product
+                    }]
+                }]
+            }]
+        }).then((user) => {
+         res.status(201).send(user)
+        }).catch((error) => {
+            console.log(error)
+        })
+
+})
+
+router.get('/product/:urlid', (req, res) => {
+    let urlid = req.params.urlid;
     Product.findOne({
-        where: { name: productname },
+        where: { urlid: urlid },
         include: [{ model: Review, include: [{ model: User }] }, { model: Hashtag }]
     }).then(product => {
         console.log(product)
@@ -185,8 +238,18 @@ router.get('/search/:SearchText/:filtername', (req, res) => {
     console.log(searchtext)
     if (filtername == "movie" || filtername == "book") {
         Product.findAll({
-            where: { name: searchtext, type: filtername },
-            include: [{ model: Review, include: [{ model: User }] }, { model: Hashtag }]
+            where: {
+                name: searchtext,
+                type: filtername
+            },
+            include: [{
+                model: Review,
+                include: [{
+                    model: User
+                }]
+            }, {
+                model: Hashtag
+            }]
         }).then(product => {
             console.log(product)
             res.status(201).send(product)
@@ -194,21 +257,35 @@ router.get('/search/:SearchText/:filtername', (req, res) => {
         }).catch((error) => {
             res.status(500).send(error)
         })
-    }
-    else {
+    } else {
         Hashtag.findAll({
-            where: {
-                name: searchtext
-            },
-            include: [{ model: Product, include: [{ model: Review, include: [{ model: User }] }, { model: Hashtag }] }]
-        }).then(product => {
-            res.status(201).send(product)
-        })
+                where: {
+                    name: searchtext
+                },
+                include: [{
+                    model: Product,
+                    include: [{
+                        model: Review,
+                        include: [{
+                            model: User
+                        }]
+                    }, {
+                        model: Hashtag
+                    }]
+                }]
+            }).then(product => {
+                res.status(201).send(product)
+            })
             .catch((error) => {
                 res.status(500).send(error)
             })
     }
 })
+
+
+
+
+
 
 // model:Review, include: [{
 //     model:  User ,
