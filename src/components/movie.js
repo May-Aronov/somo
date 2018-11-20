@@ -20,14 +20,16 @@ class ResultMovie extends Component {
     componentDidMount = async () => {
         let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
         this.data = dataApi.data
+        console.log(this.data)
         this.product= await this.props.store.getReviewproduct(this.props.match.params.urlid)
+        console.log(this.product)
     }
-
+    
     render() {
         // let product = this.props.store.products[this.props.match.params.index]
         if (this.data && this.product) {
             return (
-                <div className="container-movie text-center">
+                <div className="container-movie">
                     <div className="nameMovie">
                         <h1 id="movieTitle">{this.data.title}</h1>
                     </div>
@@ -51,7 +53,7 @@ class ResultMovie extends Component {
                     </div>
 
                     <div className="reviews-movie">
-                        <h2 id="review">Reviews <FontAwesomeIcon icon="plus-circle" size="2x" /></h2>
+                        <h2 id="review">Reviews <FontAwesomeIcon icon="edit" size="1x" /></h2>
                         <div>
                         {this.product.reviews.map((r) => {
                             return <div>

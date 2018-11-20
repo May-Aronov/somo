@@ -8,7 +8,7 @@ import Loader from "./Loader"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHashtag } from '@fortawesome/free-solid-svg-icons'
-
+const axios = require('axios')
 
 library.add(faHashtag);
 
@@ -24,9 +24,17 @@ class Search extends Component {
 
 
 
-    // componentDidMount = async () => {
-    //     this.props.store.getfilterReview()
-    // }
+    componentDidMount = async () => {
+        try {
+            let product = await axios.get(`http://localhost:8080/topproducts`) 
+            console.log(product.data)
+            // return product.data;         
+        }
+        catch (error) {
+            console.log(error)
+            // console.log("cant find any result")
+        }
+    }
 
 
     hashtagClick = (name) => {
@@ -63,11 +71,10 @@ class Search extends Component {
         return this.props.store.products.map((p, i) => {
 
             return (
-                <div className="card" onClick={() => { this.product = p }}>
-                    <div onClick={this.hashtagModel} > <FontAwesomeIcon icon="plus-circle" size="2x" /></div>
+                <div  className="card" onClick={() => { this.product = p }}>
+                    <div onClick={this.hashtagModel} > Add hashtag <FontAwesomeIcon icon="plus-circle" size="2x" className="add-hashtag-icon" /></div>
                     {this.openmodel &&
                         <div className="form-popup">
-                        
                             <form className="form-container" id="myForm" >
                                 <label name="hashtag"><b>hashtag</b></label>
                                 <input value={this.hashtag} onChange={this.ChangeHashtag} type="text" placeholder="Enter hashtag" name="hashtag" required />
@@ -84,7 +91,7 @@ class Search extends Component {
                         <p>
                             {
                                 p.hashtags.map((h) => {
-                                    return (<span name={h.name} onClick={() => this.hashtagClick(h.name)} > {'#' + h.name}  </span>)
+                                    return (<span id="hashtag" name={h.name} onClick={() => this.hashtagClick(h.name)} > {'#' + h.name}  </span>)
                                 })
                             }
                         </p>
@@ -114,11 +121,12 @@ class Search extends Component {
         return (
             <div className="Search" className="text-center">
                 <div className="inputSearch">
-                    <h1 id="search">SEARCH YOUR REVIEWS</h1>
-                    <div>
-                        <h2 id="yourReview">search</h2>
-                        <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange} id="text1" className="form-control" type="text" />
-                        <select name='FilterName' value={this.FilterName} onChange={this.handleChange}>
+                    <h2 id="search">Search your reviews</h2>
+                    <div id="yourReview">
+                        <h2 className="searchTitle">search</h2>
+                        <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange} id="searchText" className="form-control" type="text" />
+                       <br></br>
+                        <select className="searchInput"className="btn btn-dark searchSelect" name='FilterName' value={this.FilterName} onChange={this.handleChange}>
                             <option value='movie'>movie</option>
                             <option value='book'>book</option>
                             <option value='hashtags'>hashtags</option>
@@ -129,12 +137,12 @@ class Search extends Component {
                                 <span className="fa-stack ">      <FontAwesomeIcon icon="hashtag" size="10x" />
                                 </span>
                             </div> */}
-                            <div className="SerchResultContainer">
-                                {this.props.store.products ? this.renderProducts() : null}
-                            </div>
                         </div>
                     </div>
                 </div>
+                <div className="SerchResultContainer">
+                                {this.props.store.products ? this.renderProducts() : null}
+                        </div>
             </div>
         )
     }

@@ -15,12 +15,12 @@ import signUp from "./components/signUp"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUsers , faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
 
 
 
-library.add(faUsers);
+library.add(faUsers, faUserCircle);
 @inject("store")
 @observer
 class App extends Component {
@@ -51,10 +51,12 @@ class App extends Component {
               <li className="AppLi"><Link to="/feed">feed</Link></li>
             
               
-              {this.props.store.CurrentUser && 
+
+              {this.props.store.CurrentUser ?
+              
                   <li className="AppLi user" onClick={this.logout}> 
-               <p >  <i id="online-dot">&middot;</i> <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt=""/>   {this.props.store.CurrentUser.name} </p>
-                </li>}
+               <p >  <i id="online-dot">&middot;</i> <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt="" onClick={this.logout}/>   {this.props.store.CurrentUser.name} </p>
+                </li>: null}
 
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>

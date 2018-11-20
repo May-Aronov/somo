@@ -1,11 +1,10 @@
+
 .AppUl {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
-  height:40pt;
-  position: relative;
+
 }
 .Avatar{
   width:60pt
@@ -27,28 +26,46 @@ margin:auto;
 }
 .AppLi {
   float: left;
+  text-decoration: none;
+  color: white;
 }
 
 .AppLi a {
   display: block;
-  color: white;
+  color: rgb(133, 129, 129);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  font-family: trench;
+  text-decoration: none;
+  
 }
 
 /* Change the link color to #111 (black) on hover */
 .AppLi a:hover {
-  background-color: #111;
+  background-color: rgba(199, 195, 195, 0.356);
+  text-decoration: none;
+color: white;
 }
 #search{
-  font-family: "03-streetlight-demo-version.otf	"
+  font-family: amsterdam;
+  margin-top:270px;
+  margin-right: 650px;
+}
+#SigninUp{
+  font-family: amsterdam;
+  margin-top:-175px;
+  margin-right: 110px;
+
+
 }
 .add{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: amsterdam;
 }
 #home{
-  font-family: "03-streetlight-demo-version.otf	"
+  font-family: amsterdam;
+  margin-top: 270px;
+  margin-right: 690px;
   
 }
 #text{
@@ -61,7 +78,6 @@ margin:auto;
 transition: transform .2s; /* Animation */
 box-sizing: border-box;
   width:200px;
-  margin-left: 20px;
   display: inline;
 }
 
@@ -74,12 +90,12 @@ transition: transform .2s; /* Animation */
 box-sizing: border-box;
   width:400px;
   height: 90px;
-  margin-left: 480px;
+  margin-left: 32px;
 
 }
 
 #ex2:hover {
-  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.09); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
 #ex1{
   width:200px;
@@ -87,6 +103,7 @@ box-sizing: border-box;
   transition: all .2s ease-in-out;
   transition: transform .2s; /* Animation */
   box-sizing: border-box;
+
 }
 
 #ex1:hover {
@@ -96,7 +113,7 @@ box-sizing: border-box;
   position: absolute;
   right:2%;
 color: white;
-font-family: fantasy;
+font-family: trench;
 display: inline-block;
 box-sizing: border-box;
 }
@@ -111,28 +128,29 @@ border-radius: 8px;
 opacity: 0.95;
 }
 #movieImage{
-  margin-right: 600px;
-  margin-top: 47px;
+  margin-right: 460px;
+  margin-top: 15px;
   border-radius: 8px;
   opacity: 0.95;
 
   }
   
   #detailsMovie{
-    margin-left: 630px;
+    margin-left:930px;
     margin-top: -290px;
     color: rgb(192, 190, 190);
     background-color: #111;
-    width:650px;
+    width:350px;
     border-radius: 8px;
     opacity: 0.86;
     transition: all .2s ease-in-out;
     transition: transform .2s; /* Animation */
     box-sizing: border-box;
+    padding: 15pt;
     }
 
 #detailsMovie:hover {
-    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(0.9); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
   #detailsBook{
     margin-left: 630px;
@@ -146,22 +164,28 @@ opacity: 0.95;
     box-sizing: border-box;
   }
   #detailsBook:hover {
-    transform: scale(1.17); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.06); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+#reviews-div{
+  position: relative;
+
 }
 .reviews-movie{
-  margin-left: 230px;
-  margin-top: -180px;
-  width: 300px;
+  position: absolute;
+  margin-left: 100px;
+  margin-top: -268px;
+  width: 750px;
 height: auto;
 background-color: #111;
 color: rgb(192, 190, 190);
-font-family: "03-streetlight-demo-version.otf	";
 border-radius: 8px;
 opacity: 0.86;
 transition: transform .2s; /* Animation */
 box-sizing: border-box;
 }
-
+.reviews-movie:hover {
+  transform: scale(1.17); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
   /* #review{
     font-family: "03-streetlight-demo-version.otf	";
     border-radius: 8px;
@@ -174,7 +198,7 @@ box-sizing: border-box;
 }
 #bookReview{
   margin-top: 100px;
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: "trench	";
 margin-left: 230px;
 color: rgb(192, 190, 190);
     background-color: #111;
@@ -192,21 +216,23 @@ color: rgb(192, 190, 190);
 	background: linear-gradient(to right, rgb(0, 0, 0) 0%, #ffffff 100%);
 	-webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench;
+  margin-left: 150px;
 
 }
 
 #bookTitle{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench;
 
 }
 #movieTitle{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench	;
 
 }
 #o{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench	;
 color: rgb(27, 27, 27);
+margin-left: 500px;
 }
 #movieImage {
   -webkit-transition: all 0.5s ease;
@@ -243,19 +269,20 @@ color: rgb(27, 27, 27);
 
 #sign{
   color: #333;
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench;
+  margin-right: 70px;
 
 }
 #yourReview{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench;
 
 }
 #yourProduct{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench	;
 
 }
 #yourHashtags{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench;
 
 }
 #buttonAdd{
@@ -274,25 +301,38 @@ color: rgb(27, 27, 27);
   margin-right: 70px;
 }
 
-
+.searchInput{
+margin-right: 400px;
+}
 #text1{
 
 transition: all .2s ease-in-out;
 transition: transform .2s; /* Animation */
 box-sizing: border-box;
 width: 250px;
-margin-left: 560px;
+margin-left:105px;
 }
+#searchText{
+  transition: all .2s ease-in-out;
+transition: transform .2s; /* Animation */
+box-sizing: border-box;
+width: 250px;
+margin-left:240px;
 
+}
 #text1:hover {
 transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
-
+#searchText:hover {
+  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
 .ofri {
 
   position: relative;
   display: inline-block;
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: trench;
+  margin-left: 150px;
+  
 
 }
 
@@ -328,17 +368,17 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
   visibility: visible;
 }
 #yourUsername{
-  font-family: "03-streetlight-demo-version.otf	";
+  font-family: "trench	";
 
 }
 
 .card {
-  margin: 5px;
-  float: left;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.0.4);
   transition: 0.3s;
   border-radius: 20px;
-  width: 220px;
+  width: 23%;
+  margin-top:15pt;
+  
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
@@ -421,4 +461,185 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
   width:10pt;
   height:10pt;
   color: #4CAF50;
+}
+
+.btn1{
+  
+  background-color: #4CAF50;
+  color: white;
+  position: absolute;
+  left:0;
+  margin-left: 650px;
+  margin-top: -16px;
+
+}
+.btn2{
+  background-color: blue;
+  color: white;
+  position: absolute;
+  left:0;
+
+}
+.contaienr{
+  /* display: inline-flex; */
+  position: absolute;
+
+  
+}
+
+.form2-popup {
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.addReviewImg{
+border-radius: 8px;
+margin-top: 250px;
+margin-right: 600px;
+}
+
+
+.slideshow-image:nth-child(5) {
+ 
+  -webkit-animation-name: kenburns-5;
+ 
+          animation-name: kenburns-5;
+ 
+  z-index: 0;
+ 
+}
+.ImgSize{
+  width: 170px;
+  height: 170px;
+  border-radius: 8px;
+  opacity: 0.9;
+}
+.productReview{
+  margin-top: -500px;
+  margin-left: 600px;
+}
+.SignUpStart{
+  margin-right: 500px;
+  margin-top:400px;
+}
+.webCam{
+  margin-top: -430px;
+  border-radius: 8px;
+ 
+}
+#textSignUp{
+  
+transition: all .2s ease-in-out;
+transition: transform .2s; /* Animation */
+box-sizing: border-box;
+width: 250px;
+margin-left: 270px;
+}
+#yourCurrentUser{
+  font-family: trench;
+}
+.addReviewForm{
+
+  color: rgb(192, 190, 190);
+  background-color: #242323;
+  width:460px;
+  border-radius: 8px;
+  opacity: 0.7;
+  transition: all .2s ease-in-out;
+  transition: transform .2s; /* Animation */
+  box-sizing: border-box;
+  margin-left: 230px;
+  }
+
+  .addReviewForm:hover {
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+}
+#inputSignUp{
+  
+transition: all .2s ease-in-out;
+transition: transform .2s; /* Animation */
+box-sizing: border-box;
+width: 250px;
+margin-left:270px;
+}
+
+#sign2{
+  font-family: trench;
+  margin-right: 560px;
+}
+.urlSignUp{
+  margin-right: -300px;
+}
+.formButtons{
+  margin-right: 575px;
+}
+.searchTitle{
+  margin-right: 620px;
+}
+.searchSelect{
+  margin-right: 630px;
+
+}
+.LoginForm{
+  margin-left: 270px;
+  margin-top: -300px;
+}
+.theLogInButton{
+  margin-left: 700px;
+}
+#LoginTitle{
+  font-family: amsterdam;
+  margin-top: 90px;
+  margin-left: 100px;
+}
+
+
+
+#hashtag:hover{
+  color: rgb(113, 113, 235);
+  text-decoration: underline;
+}
+
+
+#hashtag{
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+
+}
+
+.SerchResultContainer{
+  position: absolute;
+  display: inline-flex;
+  width:50%;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  left: 50%;
+  top:10%;
+}
+
+.addsuccess{
+  color:green;
+  font-weight: bold;
+}
+
+.addfail{
+  color:rgb(255, 0, 0);
+  font-weight: bold;
+}
+
+
+.Search{
+position: relative;
+}
+
+
+.add-hashtag-icon{
+  cursor: pointer;
+  color: rgb(122, 130, 240);
 }

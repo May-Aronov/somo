@@ -202,64 +202,71 @@ class AddReview extends Component {
         if(this.loader){
          return   <Loader/>
         }
-            return (
-                <div className="addReview" class="text-center">
-    
-                    <h1><p class="add">ADD NEW REVIEW</p></h1>
-    
-                    {this.props.store.CurrentUser &&
-                        <div>
-                            <h4 id="yourProduct"> {this.props.store.CurrentUser.name}</h4>
-                            <img src={this.props.store.CurrentUser.imgUrl} alt=""></img>
-                        </div>}
-    
-                    <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
-                        <option>Select</option>
-                        <option value="movie" >Movie</option>
-                        <option value="book">Book</option>
-    
-                    </select>
-                    <br></br>
-                    <br></br>
-    
-    
-                   <div> {this.messege.reqON && this.messege.status  ?  <p>successfully add your review!</p> :  
-                   this.messege.reqON ?
-                   <p>fail to add your review!</p> :  null        
-                   }
-                   </div>
-    
-    
-                    <h2 id="yourProduct"> Product name:</h2>
-                    <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
-                    <br></br>
-                    <button onClick={this.find} class="btn btn-dark">Check if Movie Exist  <FontAwesomeIcon icon="check-circle" size="2x" /></button>
-                    <ul>
-                        {
-                            this.user.hashtags.map((h, i) => {
-                                return <li key={i}>{'#' + h}</li>
-                            })
-                        }
-                    </ul>
-                    <br></br>
-                    <h3 id="yourReview"> Your Review:</h3>
-                    <textarea name="reviewText" onChange={this.inputChange} value={this.user.reviewText} class="form-control" id="ex2" rows="8.5" cols="60"></textarea>
-    
-    
-                    <h2 id="yourHashtags"> Hashtags:</h2>
-    
-                    <input name="newHashtag" onChange={this.inputChange} value={this.user.newHashtag} class="form-control" id="ex3" type="text" />
-                    <button class="btn btn-dark" onClick={this.addHashtag}><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
-    
-    
-    
-                    <br></br>
-                    <button class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
-                 
-    
+        return (
+            <div className="addReview" class="text-center">
+<div className="addReviewImg">
+                <h2><p className="add">Add new review</p></h2>
+
+                {this.props.store.CurrentUser &&
+                    <div>
+                        <h2 id="yourCurrentUser"> {this.props.store.CurrentUser.name}</h2>
+                        <img className="ImgSize" src={this.props.store.CurrentUser.imgUrl} alt=""></img>
+                    </div>}
+
+                <br></br>
                 </div>
-            );
-        
+                <div className="productReview">
+                <form className="addReviewForm">
+                <br></br>
+
+
+               <div> {this.messege.reqON && this.messege.status  ?  <p className="addsuccess">successfully add your review!</p> :  
+               this.messege.reqON ?
+               <p className="addfail">fail to add your review!</p> :  null        
+               }
+               </div>
+
+
+                <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
+                    <option>What would you like to review?</option>
+                    <option value="movie" >Movie</option>
+                    <option value="book">Book</option>
+
+                </select>
+
+                <h2 id="yourProduct"> Product name:</h2>
+                <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
+                <br></br>
+                <button type="button" onClick={this.find} class="btn btn-dark">Check if Movie Exist  <FontAwesomeIcon icon="check-circle" size="2x" /></button>
+                <ul>
+                    {
+                        this.user.hashtags.map((h, i) => {
+                            return <li key={i}>{'#' + h}</li>
+                        })
+                    }
+                </ul>
+                <h3 id="yourReview"> Your Review:</h3>
+                <textarea name="reviewText" onChange={this.inputChange} value={this.user.reviewText} class="form-control" id="ex2" rows="8.5" cols="60"></textarea>
+
+
+                <h2 id="yourHashtags"> Hashtags:</h2>
+
+                <input name="newHashtag" onChange={this.inputChange} value={this.user.newHashtag} class="form-control" id="ex3" type="text" />
+                <button type="button" class="btn btn-dark" onClick={this.addHashtag}><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
+
+
+
+                <br></br>
+                <button type="button" class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
+             
+
+                <br />
+                <br></br>
+                </form>
+                </div>
+                
+            </div>
+        );
     }
 }
 

@@ -14,10 +14,12 @@ const Review = require('./Review')
 
 
 
+
 Product.hasMany(Hashtag)
 Product.hasMany(Review)
 Review.belongsTo(Product)
 Hashtag.belongsTo(Product)
+Review.belongsTo(Product)
 
 
 
