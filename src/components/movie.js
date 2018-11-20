@@ -24,7 +24,7 @@ class ResultMovie extends Component {
         this.product= await this.props.store.getReviewproduct(this.props.match.params.urlid)
         console.log(this.product)
     }
-    connection
+    
     render() {
         // let product = this.props.store.products[this.props.match.params.index]
         if (this.data && this.product) {

@@ -68,7 +68,7 @@ class Home extends Component {
         <input class="form-control" id="ex1" type="text" /> */}
         <br></br>
         {/* <Link to="/search">  */}
-        <button type="sumbit" onClick={this.onsubmit} class="btn btn-dark theLogInButton" >Log In</button>
+        <button type="button" onClick={this.onsubmit} class="btn btn-dark theLogInButton" >Log In</button>
         {/* </Link> */}
         {/* {
           !this.props.store.CurrentUser &&

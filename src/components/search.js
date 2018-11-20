@@ -72,7 +72,7 @@ class Search extends Component {
 
             return (
                 <div  className="card" onClick={() => { this.product = p }}>
-                    <div onClick={this.hashtagModel} > <FontAwesomeIcon icon="plus-circle" size="2x" /></div>
+                    <div onClick={this.hashtagModel} > Add hashtag <FontAwesomeIcon icon="plus-circle" size="2x" className="add-hashtag-icon" /></div>
                     {this.openmodel &&
                         <div className="form-popup">
                             <form className="form-container" id="myForm" >
@@ -91,7 +91,7 @@ class Search extends Component {
                         <p>
                             {
                                 p.hashtags.map((h) => {
-                                    return (<span name={h.name} onClick={() => this.hashtagClick(h.name)} > {'#' + h.name}  </span>)
+                                    return (<span id="hashtag" name={h.name} onClick={() => this.hashtagClick(h.name)} > {'#' + h.name}  </span>)
                                 })
                             }
                         </p>
@@ -137,12 +137,12 @@ class Search extends Component {
                                 <span className="fa-stack ">      <FontAwesomeIcon icon="hashtag" size="10x" />
                                 </span>
                             </div> */}
-                            <div className="SerchResultContainer">
-                                {this.props.store.products ? this.renderProducts() : null}
-                            </div>
                         </div>
                     </div>
                 </div>
+                <div className="SerchResultContainer">
+                                {this.props.store.products ? this.renderProducts() : null}
+                        </div>
             </div>
         )
     }

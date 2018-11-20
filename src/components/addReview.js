@@ -213,12 +213,6 @@ class AddReview extends Component {
                         <img className="ImgSize" src={this.props.store.CurrentUser.imgUrl} alt=""></img>
                     </div>}
 
-                <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
-                    <option>Select</option>
-                    <option value="movie" >Movie</option>
-                    <option value="book">Book</option>
-
-                </select>
                 <br></br>
                 </div>
                 <div className="productReview">
@@ -226,18 +220,24 @@ class AddReview extends Component {
                 <br></br>
 
 
-               <div> {this.messege.reqON && this.messege.status  ?  <p>successfully add your review!</p> :  
+               <div> {this.messege.reqON && this.messege.status  ?  <p className="addsuccess">successfully add your review!</p> :  
                this.messege.reqON ?
-               <p>fail to add your review!</p> :  null        
+               <p className="addfail">fail to add your review!</p> :  null        
                }
                </div>
 
 
+                <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
+                    <option>What would you like to review?</option>
+                    <option value="movie" >Movie</option>
+                    <option value="book">Book</option>
+
+                </select>
 
                 <h2 id="yourProduct"> Product name:</h2>
                 <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
                 <br></br>
-                <button onClick={this.find} class="btn btn-dark">Check if Movie Exist  <FontAwesomeIcon icon="check-circle" size="2x" /></button>
+                <button type="button" onClick={this.find} class="btn btn-dark">Check if Movie Exist  <FontAwesomeIcon icon="check-circle" size="2x" /></button>
                 <ul>
                     {
                         this.user.hashtags.map((h, i) => {
@@ -252,12 +252,12 @@ class AddReview extends Component {
                 <h2 id="yourHashtags"> Hashtags:</h2>
 
                 <input name="newHashtag" onChange={this.inputChange} value={this.user.newHashtag} class="form-control" id="ex3" type="text" />
-                <button class="btn btn-dark" onClick={this.addHashtag}><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
+                <button type="button" class="btn btn-dark" onClick={this.addHashtag}><FontAwesomeIcon icon="plus-circle" size="2x" /></button>
 
 
 
                 <br></br>
-                <button class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
+                <button type="button" class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
              
 
                 <br />

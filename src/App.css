@@ -146,10 +146,11 @@ opacity: 0.95;
     transition: all .2s ease-in-out;
     transition: transform .2s; /* Animation */
     box-sizing: border-box;
+    padding: 15pt;
     }
 
 #detailsMovie:hover {
-    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(0.9); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
   #detailsBook{
     margin-left: 630px;
@@ -372,14 +373,11 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
 }
 
 .card {
-  display: block;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.0.4);
   transition: 0.3s;
   border-radius: 20px;
-  width: 220px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 23%;
+  margin-top:15pt;
   
 }
 .card:hover {
@@ -597,4 +595,51 @@ margin-left:270px;
   font-family: amsterdam;
   margin-top: 90px;
   margin-left: 100px;
+}
+
+
+
+#hashtag:hover{
+  color: rgb(113, 113, 235);
+  text-decoration: underline;
+}
+
+
+#hashtag{
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+
+}
+
+.SerchResultContainer{
+  position: absolute;
+  display: inline-flex;
+  width:50%;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  left: 50%;
+  top:10%;
+}
+
+.addsuccess{
+  color:green;
+  font-weight: bold;
+}
+
+.addfail{
+  color:rgb(255, 0, 0);
+  font-weight: bold;
+}
+
+
+.Search{
+position: relative;
+}
+
+
+.add-hashtag-icon{
+  cursor: pointer;
+  color: rgb(122, 130, 240);
 }
