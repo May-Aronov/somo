@@ -87,6 +87,18 @@ class reviewStore {
             alert(" faild to sign in")
         }
     }
+
+    @action getFeed = async () => {
+        try {
+            let feed = await axios.get(`http://localhost:8080/myfeed/${this.CurrentUser.id}`)
+            console.log(feed.data)
+            return feed.data
+        }
+        catch{
+            alert(" faild to sign in")
+        }
+    }
+
 }
 
 const store = new reviewStore();

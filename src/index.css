@@ -4,7 +4,7 @@ body {
   font-family: The Queenthine;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("computer.jpg");
+  background-image:url("computer.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center; 
@@ -14,4 +14,22 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+.postimg{
+width:90pt;
+height:110pt;
+margin-top:10pt;
+}
+
+.feed{
+  background-color: black;
+}
+
+.post{
+  width:300pt;
+  background-color: rgb(172, 172, 141);
+  margin:auto;
+  margin-top: 10pt;
 }

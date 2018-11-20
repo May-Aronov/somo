@@ -10,6 +10,7 @@ import AddReview from "./components/addReview"
 import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
 import signUp from "./components/signUp"
+import Feed from "./components/feed"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -44,6 +45,7 @@ class App extends Component {
               <li className="AppLi"><Link to="/search">Search</Link></li>
               <li className="AppLi"><Link to="/addReview">Add Review</Link></li>
               <li className="AppLi"><Link to="/signUp">signUp</Link></li>
+              <li className="AppLi"><Link to="/feed">Feed</Link></li>
         
               
               {this.props.store.CurrentUser && 
@@ -54,7 +56,6 @@ class App extends Component {
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>
           </div>
-
           <Route path="/" exact component={Home} />
           <Route path="/search" exact component={Search} />
           <Route path="/addReview" exact component={AddReview} />
@@ -62,7 +63,8 @@ class App extends Component {
           <Route path="/movie/:index/:urlid" exact render={({ match }) => <ResultMovie match={match} />} />
           <Route path="/book/:index/:urlid" exact render={({ match }) => <ResultBook match={match} />} />
           <Route path="/signUp" exact component={signUp} />
-
+          <Route path="/feed" exact component={Feed} />
+          
         </div>
       </Router>
 
