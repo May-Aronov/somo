@@ -16,13 +16,6 @@ code {
     monospace;
 }
 
-
-.postimg{
-width:90pt;
-height:110pt;
-margin-top:10pt;
-}
-
 .feed{
   background-color: black;
 }
@@ -32,4 +25,8 @@ margin-top:10pt;
   background-color: rgb(172, 172, 141);
   margin:auto;
   margin-top: 10pt;
+}
+
+#Avatar{
+  width:40pt;
 }

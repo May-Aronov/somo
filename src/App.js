@@ -11,7 +11,7 @@ import AddReview from "./components/addReview"
 import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
 import signUp from "./components/signUp"
-import Feed from "./components/feed"
+
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -59,7 +59,6 @@ class App extends Component {
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>
           </div>
-          <Route path="/feed" exact component={Feed} />
           <Route path="/" exact component={Home} />
           <Route path="/search" exact component={Search} />
           <Route path="/addReview" exact component={AddReview} />

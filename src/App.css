@@ -8,13 +8,15 @@
   position: relative;
 }
 .Avatar{
-  width:60px
+  width:60pt
 }
 #comment{
   background-color: lightsteelblue; 
 }
 .productPhoto{
-  width:100%
+  width:90pt;
+height:110pt;
+margin:auto;
 }
 .user{
   display: block;
