@@ -53,7 +53,7 @@ class App extends Component {
               
               {this.props.store.CurrentUser && 
                   <li className="AppLi user" onClick={this.logout}> 
-               <p > User:  <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt=""/>- {this.props.store.CurrentUser.name} </p>
+               <p >  <i id="online-dot">&middot;</i> <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt=""/>   {this.props.store.CurrentUser.name} </p>
                 </li>}
 
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
