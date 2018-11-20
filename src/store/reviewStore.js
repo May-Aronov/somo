@@ -16,6 +16,7 @@ class reviewStore {
         localStorage.clear()
         this.CurrentUser=null;   
     }
+
     @action  addFavorite= async (favoriteid) => {
         try {
             let newfavorite= await axios.post(`http://localhost:8080/user/${this.CurrentUser.id}/favroite/${favoriteid}`, {})
@@ -26,13 +27,15 @@ class reviewStore {
             console.log("fail to add review")
         }
     }
+
     @action addReview = async (user) => {
         try {
             let newReview = await axios.post(`http://localhost:8080/newreview/${this.CurrentUser.id}`, user)
-            console.log(newReview)
+           return true;
         }
         catch{
             console.log("fail to add review")
+            return false;
         }
     }
 
@@ -50,6 +53,18 @@ class reviewStore {
         }
     }
 
+    @action getReviewproduct = async (productname) => {
+        try {
+            let product = await axios.get(`http://localhost:8080/product/${productname}`) 
+            console.log(product.data)
+            return product.data;  
+            
+        }
+        catch (error) {
+            console.log("cant find any result")
+        }
+    }
+
     @action filterReview = async (SearchText, filtername) => {
         try {
             console.log(filtername)
@@ -62,9 +77,10 @@ class reviewStore {
         }
         catch (error) {
             console.log("cant find any result")
-            this.products = null
+            this.products = []
         }
     }
+
     @action addUser = async (user) => {
         try {
             let newUser = await axios.post(`http://localhost:8080/newuser`, { UserName: user.UserName, Img: user.img })

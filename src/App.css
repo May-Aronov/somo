@@ -7,7 +7,15 @@
   height:40pt;
   position: relative;
 }
-
+.Avatar{
+  width:60px
+}
+#comment{
+  background-color: lightsteelblue; 
+}
+.productPhoto{
+  width:100%
+}
 .user{
   display: block;
   color: white;

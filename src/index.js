@@ -6,6 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import store from './store/reviewStore';
 import { Provider } from 'mobx-react';
+import  '../node_modules/w3-css/3/w3.css'
+
 
 
 ReactDOM.render(<Provider store={store}>

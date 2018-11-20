@@ -5,6 +5,8 @@ import { observable, action } from "mobx";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import Loader from "./Loader"
+
 library.add(faCheckCircle, faPlusCircle);
 const axios = require('axios')
 
@@ -20,9 +22,13 @@ class AddReview extends Component {
         hashtags: [],
         newHashtag: ''
     };
+    @observable  loader=false
+    @observable apiconfirm=false
+    @observable messege={status:false ,reqON:false};
 
+    submitForm = async() => {
 
-    submitForm = () => {
+        this.loader=true
         this.user.productType.toLowerCase();
         this.user.productName.toLowerCase();
         let user = {
@@ -33,12 +39,24 @@ class AddReview extends Component {
             productUrlId: this.user.productUrlId,
             hashtags: this.user.hashtags
         }
-        console.log(user)
-        this.props.store.addReview(user)
-        this.user.productType = "";
-        this.user.productName = "";
-        this.user.reviewText = "";
-
+       if(this.apiconfirm || this.reviewText){
+       this.messege.status =await this.props.store.addReview(user)
+       this.loader=false
+       this.messege.reqON=true 
+       this.user = {
+            productType: "",
+            productName: "",
+            reviewText: "",
+            productImgUrl: "",
+            productUrlId: "",
+            hashtags: [],
+            newHashtag: ''         
+        }
+        }
+        else{
+            alert("you need to add product,review and confirm your product name")
+        }
+       
     }
 
     @action find = async () => {
@@ -60,6 +78,7 @@ class AddReview extends Component {
                         this.user.productImgUrl = Mydata.items[i].volumeInfo.imageLinks.smallThumbnail;
                         this.user.hashtags = this.findHashtagBook(Mydata.items[i].volumeInfo)
                         alert("found :)")
+                        this.apiconfirm=true
                         return;
                     }
                 }
@@ -80,6 +99,7 @@ class AddReview extends Component {
                     this.user.productImgUrl = Mydata.Poster
                     this.user.productName = Mydata.Title
                     this.user.hashtags = this.findHashtagMovie(Mydata)
+                    this.apiconfirm=true
                     alert("found :)")
                 }
             }
@@ -97,7 +117,7 @@ class AddReview extends Component {
     }
 
     @action addHashtag = () => {
-        this.user.hashtags.push(this.user.newHashtag)
+        this.user.hashtags.push(this.replace(this.user.newHashtag))
         this.user.newHashtag = ''
     }
 
@@ -179,6 +199,9 @@ class AddReview extends Component {
             this.props.history.push("/home");
             alert("u need to sign in or signup");
         }
+        if(this.loader){
+         return   <Loader/>
+        }
         return (
             <div className="addReview" class="text-center">
 
@@ -198,6 +221,14 @@ class AddReview extends Component {
                 </select>
                 <br></br>
                 <br></br>
+
+
+               <div> {this.messege.reqON && this.messege.status  ?  <p>successfully add your review!</p> :  
+               this.messege.reqON ?
+               <p>fail to add your review!</p> :  null        
+               }
+               </div>
+
 
                 <h2 id="yourProduct"> Product name:</h2>
                 <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
@@ -224,8 +255,8 @@ class AddReview extends Component {
 
                 <br></br>
                 <button class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
+             
 
-                <br />
             </div>
         );
     }

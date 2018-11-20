@@ -91,44 +91,37 @@ router.post(`/product/:productID`, (req, res) => {
 //     })
 // })
 
-router.post('/newreview/:userid', async (req, res) => {
-    let reqData = req.body; //{ username: "", productType: "",productname: "",reviewText: ""}
-    await Product
-        .findOrCreate({
-            where: {
-                type: reqData.productType,
-                name: reqData.productName,
-                imgurl: reqData.productImgUrl,
-                urlid: reqData.productUrlId
-            }
-        })
-        .spread(async (user, created) => {
-            let product = await user.get({
-                plain: true
-            })
-            let review = await Review.create({
-                text: reqData.reviewText,
-                productId: product.id,
-                userId: req.params.userid
-            })
 
-            // Hashtag.bulkCreate(reqData.hashtags , {updateOnDuplicate:[]})
-            await reqData.hashtags.forEach((h) => {
-                Hashtag
-                    .findOrCreate({
-                        where: {
-                            name: h,
-                            productId: product.id
-                        }
-                    })
-                    .spread(async (hashtag, created) => {
-                        console.log(hashtag)
-                    })
+
+router.post('/newreview/:userid', async (req, res) => {
+    let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
+    try {
+        await Product
+            .findOrCreate({
+                where: {
+                    type: reqData.productType, name: reqData.productName, imgurl: reqData.productImgUrl
+                    , urlid: reqData.productUrlId
+                }
             })
-            res.status(201).send(review)
-        })
-    res.status(500).send(err);
+            .spread(async (user, created) => {
+                let product = await user.get({ plain: true })
+                let review = await Review.create({ text: reqData.reviewText, productId: product.id, userId: req.params.userid })
+                await reqData.hashtags.forEach((h) => {
+                    Hashtag
+                        .findOrCreate({ where: { name: h, productId: product.id } })
+                        .spread(async (hashtag, created) => {
+                            console.log(hashtag)
+                        })
+                })
+                res.status(201).send(review)
+            })
+           
+    }
+    catch (error) {
+        res.status(500).send(err);
+    }
 })
+
 
 router.get('/user/:User', (req, res) => {
     let username = req.params.User
@@ -187,6 +180,21 @@ router.get('/myfeed/:userID', async (req, res) => {
         })
 
 })
+
+router.get('/product/:urlid', (req, res) => {
+    let urlid = req.params.urlid;
+    Product.findOne({
+        where: { urlid: urlid },
+        include: [{ model: Review, include: [{ model: User }] }, { model: Hashtag }]
+    }).then(product => {
+        console.log(product)
+        res.status(201).send(product)
+
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+})
+
 
 router.get('/search/:SearchText/:filtername', (req, res) => {
     let searchtext = req.params.SearchText;
