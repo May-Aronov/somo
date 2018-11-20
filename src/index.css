@@ -8,7 +8,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center; 
-  
+ font-family: 'Montserrat' !important; 
 }
 
 code {
