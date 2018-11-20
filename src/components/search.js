@@ -71,11 +71,10 @@ class Search extends Component {
         return this.props.store.products.map((p, i) => {
 
             return (
-                <div className="card" onClick={() => { this.product = p }}>
+                <div  className="card" onClick={() => { this.product = p }}>
                     <div onClick={this.hashtagModel} > <FontAwesomeIcon icon="plus-circle" size="2x" /></div>
                     {this.openmodel &&
                         <div className="form-popup">
-                        
                             <form className="form-container" id="myForm" >
                                 <label name="hashtag"><b>hashtag</b></label>
                                 <input value={this.hashtag} onChange={this.ChangeHashtag} type="text" placeholder="Enter hashtag" name="hashtag" required />
@@ -122,11 +121,12 @@ class Search extends Component {
         return (
             <div className="Search" className="text-center">
                 <div className="inputSearch">
-                    <h1 id="search">SEARCH YOUR REVIEWS</h1>
-                    <div>
-                        <h2 id="yourReview">search</h2>
-                        <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange} id="text1" className="form-control" type="text" />
-                        <select name='FilterName' value={this.FilterName} onChange={this.handleChange}>
+                    <h2 id="search">Search your reviews</h2>
+                    <div id="yourReview">
+                        <h2 className="searchTitle">search</h2>
+                        <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange} id="searchText" className="form-control" type="text" />
+                       <br></br>
+                        <select className="searchInput"className="btn btn-dark searchSelect" name='FilterName' value={this.FilterName} onChange={this.handleChange}>
                             <option value='movie'>movie</option>
                             <option value='book'>book</option>
                             <option value='hashtags'>hashtags</option>

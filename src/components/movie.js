@@ -29,7 +29,7 @@ class ResultMovie extends Component {
         // let product = this.props.store.products[this.props.match.params.index]
         if (this.data && this.product) {
             return (
-                <div className="container-movie text-center">
+                <div className="container-movie">
                     <div className="nameMovie">
                         <h1 id="movieTitle">{this.data.title}</h1>
                     </div>
@@ -53,14 +53,14 @@ class ResultMovie extends Component {
                     </div>
 
                     <div className="reviews-movie">
-                        <h2 id="review">Reviews <FontAwesomeIcon icon="plus-circle" size="2x" /></h2>
+                        <h2 id="review">Reviews <FontAwesomeIcon icon="edit" size="1x" /></h2>
                         <div>
-                        {/* {this.product.reviews.map((r) => {
+                        {this.product.reviews.map((r) => {
                             return <div>
                               {r.user.id == this.props.store.CurrentUser.id ? null:<AddFollow props favoriteid={r.user.id}/>}
                                 <span>{r.user.id == this.props.store.CurrentUser.id ?  "you" :  r.user.name }</span> -  <span>{r.text}</span>
                             </div>
-                        })} */}
+                        })}
                         </div>
                     </div>
 
