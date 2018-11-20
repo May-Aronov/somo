@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 // import ResultMovie from './Result-movie';
 // import ResultBook from './Result-Book';
+import Loader from "./Loader"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHashtag } from '@fortawesome/free-solid-svg-icons'
@@ -19,6 +20,7 @@ class Search extends Component {
     @observable FilterName = "movie"
     @observable openmodel = false
     @observable hashtag=null
+    @observable  loader=false
 
 
 
@@ -34,9 +36,9 @@ class Search extends Component {
         this.props.store.filterReview(this.SearchText, this.FilterName)
     }
 
-    handleChange = (e) => {
+    handleChange =async (e) => {
         this[e.target.name] = e.target.value
-        this.props.store.filterReview(this.SearchText, this.FilterName)
+      await  this.props.store.filterReview(this.SearchText, this.FilterName)
     }
 
     ChangeHashtag = (e) => {
@@ -57,6 +59,7 @@ class Search extends Component {
             this.props.history.push("/home");
             alert("u need to sign in or signup");
         }
+        if(this.SearchText){
         return this.props.store.products.map((p, i) => {
 
             return (
@@ -88,7 +91,11 @@ class Search extends Component {
                     </div>
                 </div>
             )
-        })
+
+        })}
+        else{
+            return <div></div>
+        }
     }
 
 
@@ -101,6 +108,9 @@ class Search extends Component {
         //     this.props.history.push("/home");
         //     alert("u need to sign in or signup");
         //   }
+        if(this.loader){
+            return   <Loader/>
+           }
         return (
             <div className="Search" className="text-center">
                 <div className="inputSearch">

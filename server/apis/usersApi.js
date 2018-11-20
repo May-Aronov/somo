@@ -79,30 +79,35 @@ router.post(`/product/:productID`, (req, res) => {
 
 router.post('/newreview/:userid', async (req, res) => {
     let reqData = req.body;//{ username: "", productType: "",productname: "",reviewText: ""}
-    await Product
-        .findOrCreate({
-            where: {
-                type: reqData.productType, name: reqData.productName, imgurl: reqData.productImgUrl
-                , urlid: reqData.productUrlId
-            }
-        })
-        .spread(async (user, created) => {
-            let product = await user.get({ plain: true })
-            let review = await Review.create({ text: reqData.reviewText, productId: product.id, userId: req.params.userid })
-            await reqData.hashtags.forEach((h) => {
-                Hashtag
-                    .findOrCreate({ where: { name: h, productId: product.id } })
-                    .spread(async (hashtag, created) => {
-                        console.log(hashtag)
-                    })
+    try {
+        await Product
+            .findOrCreate({
+                where: {
+                    type: reqData.productType, name: reqData.productName, imgurl: reqData.productImgUrl
+                    , urlid: reqData.productUrlId
+                }
             })
-            res.status(201).send(review)
-        })
-    res.status(500).send(err);
+            .spread(async (user, created) => {
+                let product = await user.get({ plain: true })
+                let review = await Review.create({ text: reqData.reviewText, productId: product.id, userId: req.params.userid })
+                await reqData.hashtags.forEach((h) => {
+                    Hashtag
+                        .findOrCreate({ where: { name: h, productId: product.id } })
+                        .spread(async (hashtag, created) => {
+                            console.log(hashtag)
+                        })
+                })
+                res.status(201).send(review)
+            })
+           
+    }
+    catch (error) {
+        res.status(500).send(err);
+    }
 })
 
 
-router.get('/user/:User', (req, res) =>{
+router.get('/user/:User', (req, res) => {
     let username = req.params.User
     User.findOne({
         where: { name: username },
@@ -110,7 +115,7 @@ router.get('/user/:User', (req, res) =>{
             model: User, as: "favorite"
         }]
     }).then(userr => {
-        if (userr){
+        if (userr) {
             console.log(userr)
             res.status(201).send(userr)
         }
@@ -125,16 +130,16 @@ router.get('/user/:User', (req, res) =>{
 
 router.get('/product/:productname', (req, res) => {
     let productname = req.params.productname;
-        Product.findOne({
-            where: {name: productname},
-            include: [{ model: Review, include: [{ model: User }] }, { model: Hashtag }]
-        }).then(product => {
-            console.log(product)
-            res.status(201).send(product)
+    Product.findOne({
+        where: { name: productname },
+        include: [{ model: Review, include: [{ model: User }] }, { model: Hashtag }]
+    }).then(product => {
+        console.log(product)
+        res.status(201).send(product)
 
-        }).catch((error) => {
-            res.status(500).send(error) 
-})
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
 })
 
 

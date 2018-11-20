@@ -31,10 +31,11 @@ class reviewStore {
     @action addReview = async (user) => {
         try {
             let newReview = await axios.post(`http://localhost:8080/newreview/${this.CurrentUser.id}`, user)
-            console.log(newReview)
+           return true;
         }
         catch{
             console.log("fail to add review")
+            return false;
         }
     }
 
@@ -55,6 +56,7 @@ class reviewStore {
     @action getReviewproduct = async (productname) => {
         try {
             let product = await axios.get(`http://localhost:8080/product/${productname}`) 
+            console.log(product.data)
             return product.data;  
             
         }

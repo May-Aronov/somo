@@ -6,6 +6,7 @@ import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import Search from "./components/search"
 import Home from "./components/Home"
+import Feed from "./components/Feed"
 import AddReview from "./components/addReview"
 import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
@@ -36,15 +37,18 @@ class App extends Component {
 
     return (
       <Router>
+      
 
         <div className="App">
+      
           <div className="Linkim">
             <ul className="AppUl">
               <li className="AppLi"><Link to="/home">Home</Link></li>
               <li className="AppLi"><Link to="/search">Search</Link></li>
               <li className="AppLi"><Link to="/addReview">Add Review</Link></li>
               <li className="AppLi"><Link to="/signUp">signUp</Link></li>
-        
+              <li className="AppLi"><Link to="/feed">feed</Link></li>
+            
               
               {this.props.store.CurrentUser && 
                   <li className="AppLi user" onClick={this.logout}> 
@@ -54,7 +58,7 @@ class App extends Component {
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>
           </div>
-
+          <Route path="/feed" exact component={Feed} />
           <Route path="/" exact component={Home} />
           <Route path="/search" exact component={Search} />
           <Route path="/addReview" exact component={AddReview} />

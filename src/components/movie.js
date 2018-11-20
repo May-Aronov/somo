@@ -55,8 +55,8 @@ class ResultMovie extends Component {
                         <div>
                         {this.product.reviews.map((r) => {
                             return <div>
-                                <AddFollow props favoriteid={r.user.id}/>
-                                <span>{r.user ? r.user.name : null }</span> -  <span>{r.text}</span>
+                              {r.user.id == this.props.store.CurrentUser.id ? null:<AddFollow props favoriteid={r.user.id}/>}
+                                <span>{r.user.id == this.props.store.CurrentUser.id ?  "you" :  r.user.name }</span> -  <span>{r.text}</span>
                             </div>
                         })}
                         </div>
