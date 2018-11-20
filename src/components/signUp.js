@@ -48,15 +48,20 @@ class signUp extends Component {
     return (
       <div className="Search" class="text-center">
         <div className="inputSearch">
-          <h1 id="search">SIGN UP</h1>
+        <div className="SignUpStart">
+          <h2 id="SigninUp">Sign Up</h2>
+          <br></br>
           <h3 class="text-center" id="sign">Username:</h3>
-          <input name="UserName" value={this.user.UserName} onChange={this.handleChange} id="text1" class="form-control" type="text" />
-          <h1 id="search">image profile</h1>
-          <input name="img" value={this.user.img} onChange={this.handleChange} id="text1" class="form-control" type="text" />
-          <button onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
+          <input name="UserName" value={this.user.UserName} onChange={this.handleChange} id="inputSignUp" class="form-control" type="text" />
+          </div>
+          <div className="SignUpLater">
+          <h3 id="sign2">profile image:</h3>
+          <input name="img" value={this.user.img} onChange={this.handleChange} id="textSignUp" class="form-control" type="text" />
+          <form className="formButtons">
+          <button className="btn btn-primary-dark "onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
           <br></br>
           {this.showCamera ?
-             <div>
+             <div className="webCam">
             <Webcam
               audio={false}
               height={350}
@@ -69,6 +74,8 @@ class signUp extends Component {
           </div>
            : null}
           <button type="sumbit" onClick={this.onsubmit} class="btn btn-dark">sign-up</button>
+          </form>
+        </div>
         </div>
 
       </div>

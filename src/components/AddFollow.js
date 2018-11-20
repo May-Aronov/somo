@@ -31,13 +31,13 @@ class AddFollow extends Component {
 
   render() {
     return (
-      <div>
-        {this.userfollowes(this.props.store.CurrentUser.favorite,this.props.favoriteid) ? <button  type="button">following</button> :
-        <button onClick={()=>this.addFavorite(this.props.favoriteid)} type="button">follow</button>
-        }       
-      </div>
+      <span>
+        {this.userfollowes(this.props.store.CurrentUser.favorite,this.props.favoriteid) ? <button class= "btn btn-blue btn1" type="button">following</button> :
+        
+        <button onClick={()=>this.addFavorite(this.props.favoriteid)} class= "btn btn-green btn2" type="button">follow</button>
+        } </span>      
     );
   }
 }
 
-export default AddFollow
+export default AddFollow;

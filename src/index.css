@@ -4,11 +4,12 @@ body {
   font-family: The Queenthine;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("computer.jpg");
+  background-image: url("nice.jpg");
+  
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center; 
- font-family: 'Montserrat' !important; 
 }
 
 code {

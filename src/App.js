@@ -13,12 +13,12 @@ import signUp from "./components/signUp"
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUsers , faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
 
 
 
-library.add(faUsers);
+library.add(faUsers, faUserCircle);
 @inject("store")
 @observer
 class App extends Component {
@@ -40,16 +40,16 @@ class App extends Component {
         <div className="App">
           <div className="Linkim">
             <ul className="AppUl">
-              <li className="AppLi"><Link to="/home">Home</Link></li>
-              <li className="AppLi"><Link to="/search">Search</Link></li>
-              <li className="AppLi"><Link to="/addReview">Add Review</Link></li>
-              <li className="AppLi"><Link to="/signUp">signUp</Link></li>
-        
+              <li className="AppLi"><Link to="/home"><h4>Home</h4></Link></li>
+              <li className="AppLi"><Link to="/search"><h4>Search</h4></Link></li>
+              <li className="AppLi"><Link to="/addReview"><h4>Add Review</h4></Link></li>
+              <li className="AppLi"><Link to="/signUp"><h4>sign Up</h4></Link></li>
+
+              {this.props.store.CurrentUser ?
               
-              {this.props.store.CurrentUser && 
                   <li className="AppLi user" onClick={this.logout}> 
-               <p > User:  <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt=""/>- {this.props.store.CurrentUser.name} </p>
-                </li>}
+               <p type="button" className="form2-popup"> User:  <img className="userimgnav"onClick={this.logout} src={this.props.store.CurrentUser.imgUrl} alt=""/> {this.props.store.CurrentUser.name} </p>
+                </li> : <img className="userimgnav" src={<FontAwesomeIcon icon="user-circle" size="2x" color="#blue" />} alt=""/>}
 
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>

@@ -181,13 +181,13 @@ class AddReview extends Component {
         }
         return (
             <div className="addReview" class="text-center">
-
-                <h1><p class="add">ADD NEW REVIEW</p></h1>
+<div className="addReviewImg">
+                <h2><p className="add">Add new review</p></h2>
 
                 {this.props.store.CurrentUser &&
                     <div>
-                        <h4 id="yourProduct"> {this.props.store.CurrentUser.name}</h4>
-                        <img src={this.props.store.CurrentUser.imgUrl} alt=""></img>
+                        <h2 id="yourCurrentUser"> {this.props.store.CurrentUser.name}</h2>
+                        <img className="ImgSize" src={this.props.store.CurrentUser.imgUrl} alt=""></img>
                     </div>}
 
                 <select name="productType" onChange={this.inputChange} value={this.user.productType} class="btn btn-dark">
@@ -197,8 +197,10 @@ class AddReview extends Component {
 
                 </select>
                 <br></br>
+                </div>
+                <div className="productReview">
+                <form className="addReviewForm">
                 <br></br>
-
                 <h2 id="yourProduct"> Product name:</h2>
                 <input name="productName" onChange={this.inputChange} value={this.user.productName} class="form-control" id="text1" type="text" />
                 <br></br>
@@ -210,7 +212,6 @@ class AddReview extends Component {
                         })
                     }
                 </ul>
-                <br></br>
                 <h3 id="yourReview"> Your Review:</h3>
                 <textarea name="reviewText" onChange={this.inputChange} value={this.user.reviewText} class="form-control" id="ex2" rows="8.5" cols="60"></textarea>
 
@@ -226,6 +227,10 @@ class AddReview extends Component {
                 <button class="btn btn-dark" id="buttonAdd" onClick={this.submitForm}>ADD</button>
 
                 <br />
+                <br></br>
+                </form>
+                </div>
+                
             </div>
         );
     }
