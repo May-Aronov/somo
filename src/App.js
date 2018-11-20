@@ -12,6 +12,7 @@ import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
 import signUp from "./components/signUp"
 
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -58,7 +59,6 @@ class App extends Component {
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>
           </div>
-          <Route path="/feed" exact component={Feed} />
           <Route path="/" exact component={Home} />
           <Route path="/search" exact component={Search} />
           <Route path="/addReview" exact component={AddReview} />
@@ -66,7 +66,8 @@ class App extends Component {
           <Route path="/movie/:index/:urlid" exact render={({ match }) => <ResultMovie match={match} />} />
           <Route path="/book/:index/:urlid" exact render={({ match }) => <ResultBook match={match} />} />
           <Route path="/signUp" exact component={signUp} />
-
+          <Route path="/feed" exact component={Feed} />
+          
         </div>
       </Router>
 
