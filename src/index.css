@@ -1,7 +1,6 @@
 body {
   /* margin: 0;
   padding: 0; */
-  font-family: 'Courgette', 'cursive';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("nice.jpg");
@@ -10,7 +9,7 @@ body {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover ;
-
+  font-family: 'Special Elite', cursive;
 }
 
 code {

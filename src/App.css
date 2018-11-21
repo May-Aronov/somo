@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
 
 .AppUl {
   list-style-type: none;
@@ -8,7 +9,7 @@
 }
 
 .postcard{
-  font-family: 'Courgette', 'cursive';
+  font-family: 'Special Elite', cursive;
   font-size: 18px;
 }
 
@@ -45,7 +46,7 @@ margin:auto;
   color: rgb(133, 129, 129);
   text-align: center;
   padding: 14px 16px;
-  font-family: trench;
+  font-family: 'Special Elite', cursive;
   text-decoration: none;
   font-weight: bold;
   size:40px
@@ -269,22 +270,23 @@ color: rgb(192, 190, 190);
 	-webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-left: 150px;
-
+  font-family: 'Special Elite', cursive;
 }
 
 #bookTitle{
-  font-family: trench;
+  font-family: 'Special Elite', cursive;
 
 }
 #movieTitle{
-  font-family: trench	;
+  font-family: 'Special Elite', cursive;
 
 }
 #o{
-font-family: trench	; 
+  font-family: 'Special Elite', cursive;
 color: rgb(27, 27, 27);
 margin-left: 135px;
 }
+
 #movieImage {
   -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;
@@ -320,7 +322,7 @@ margin-left: 135px;
 
 #sign{
   color: #333;
-  font-family: trench; 
+  font-family: 'Special Elite', cursive;
   margin-right: 70px;
 
 }
@@ -627,7 +629,7 @@ margin-left:270px;
 }
 
 #sign2{
-  font-family: trench;
+  font-family: 'Special Elite', cursive;
 }
 .LoginForm{
   margin-left: 270px;
@@ -637,7 +639,7 @@ margin-left:270px;
   margin-left: 750px;
 }
 #LoginTitle{
-  font-family: amsterdam;
+  font-family: 'Special Elite', cursive;
   margin-top: 90px;
   margin-left: 130px;
 
@@ -726,7 +728,7 @@ left:22%
   background-color: #111;
   color:cadetblue;
   font-weight: bold;
-  font-family: Lemon;
+  font-family: 'Special Elite', cursive;
 }
 
 #img-movie{
