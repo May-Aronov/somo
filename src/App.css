@@ -48,7 +48,11 @@ margin:auto;
   font-family: trench;
   text-decoration: none;
   font-weight: bold;
-  
+  size:40px
+}
+
+.Linkim{
+  height: 30%;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -168,9 +172,7 @@ display: inline-block;
 box-sizing: border-box;
 }
 
-.Linkim{
-  height: 10%;
-}
+
 #bookImage{
 margin-right: 600px;
 margin-top: 40px;
@@ -725,4 +727,12 @@ left:22%
   color:cadetblue;
   font-weight: bold;
   font-family: Lemon;
+}
+
+#img-movie{
+  margin-left: 200px;
+}
+
+#right-btn{
+margin-right:300px;
 }

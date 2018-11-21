@@ -5,8 +5,6 @@ import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 
 
-const axios = require('axios')
-
 @inject("store")
 @observer
 class AddFollow extends Component {
@@ -34,7 +32,7 @@ class AddFollow extends Component {
       <span>
         {this.userfollowes(this.props.store.CurrentUser.favorite,this.props.favoriteid) ? <button class= "btn btn-blue btn1" type="button">following</button> :
         
-        <button onClick={()=>this.addFavorite(this.props.favoriteid)} class= "btn btn-green btn2" type="button">follow</button>
+        <button onClick={()=>this.addFavorite(this.props.favoriteid)} class= "btn btn-green btn2 " id="right-btn" type="button">follow</button>
         } </span>      
     );
   }
