@@ -10,7 +10,7 @@ library.add(faStar, faEdit);
 const axios = require('axios');
 
 @inject("store")
-@observer  
+@observer
 
 class ResultMovie extends Component {
 
@@ -21,23 +21,25 @@ class ResultMovie extends Component {
         let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
         this.data = dataApi.data
         console.log(this.data)
-        this.product= await this.props.store.getReviewproduct(this.props.match.params.urlid)
+        this.product = await this.props.store.getReviewproduct(this.props.match.params.urlid)
         console.log(this.product)
     }
-    
+
     render() {
         // let product = this.props.store.products[this.props.match.params.index]
         if (this.data && this.product) {
             return (
                 <div className="container-movie">
-                    <div className="nameMovie">
-                        <h1 id="movieTitle">{this.data.title}</h1>
-                    </div>
-                    <div className="img-movie">
-                        <img id="movieImage" src={this.data.Poster} width="250" height="250" />
-                    </div>
-                    <div class="hover14 column">
+                    <div className="nameImg">
+                        <div className="nameMovie">
+                            <h1 id="movieTitle">{this.data.title}</h1>
+                        </div>
+                        <div className="img-movie">
+                            <img id="movieImage" src={this.data.Poster} width="250" height="250" />
+                        </div>
+                        <div class="hover14 column">
 
+                        </div>
                     </div>
                     <div id="detailsMovie" className="details-movie">
                         <h3> Year:</h3> <p>{this.data.Year}</p>
@@ -55,12 +57,12 @@ class ResultMovie extends Component {
                     <div className="reviews-movie">
                         <h2 id="review">Reviews <FontAwesomeIcon icon="edit" size="1x" /></h2>
                         <div>
-                        {this.product.reviews.map((r) => {
-                            return <div>
-                              {r.user.id == this.props.store.CurrentUser.id ? null:<AddFollow props favoriteid={r.user.id}/>}
-                                <span>{r.user.id == this.props.store.CurrentUser.id ?  "you" :  r.user.name }</span> -  <span>{r.text}</span>
-                            </div>
-                        })}
+                            {this.product.reviews.map((r) => {
+                                return <div>
+                                    {r.user.id == this.props.store.CurrentUser.id ? null : <AddFollow props favoriteid={r.user.id} />}
+                                    <span>{r.user.id == this.props.store.CurrentUser.id ? "you" : r.user.name}</span> -  <span>{r.text}</span>
+                                </div>
+                            })}
                         </div>
                     </div>
 

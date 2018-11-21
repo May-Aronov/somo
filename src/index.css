@@ -5,9 +5,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("nice.jpg");
-  background-size: 100%;
+
+  background-attachment: fixed;
+  background-position: top center;
   background-repeat: no-repeat;
-  background-position: top center; 
+  background-size: cover;
 }
 
 code {

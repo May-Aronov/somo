@@ -62,7 +62,7 @@ class Home extends Component {
         <h3 id="LoginTitle" class="text-center">Login</h3>
 <br></br>
 <h4 class="text-center" id="o">Username:</h4>
-        <input name="user" value={this.user} onChange={this.handleChange} class="form-control" id="ex1" type="text" />
+        <input name="user" value={this.user} onChange={this.handleChange} class="form-control" id="ex12" type="text" />
         {/* <h4 class="text-center" id="o">Password:</h4>
 
         <input class="form-control" id="ex1" type="text" /> */}
@@ -82,9 +82,6 @@ class Home extends Component {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <div class="container">
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  Open modal
-</button>
 
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
