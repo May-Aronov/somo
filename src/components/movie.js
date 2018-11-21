@@ -19,9 +19,9 @@ class ResultMovie extends Component {
     @observable product = null
 
     componentDidMount = async () => {
-        let dataApi = await axios.get(`http://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
+        let dataApi = await axios.get(`https://www.omdbapi.com/?apikey=9bededde&t=${this.props.match.params.urlid}`)
         this.data = dataApi.data
-        console.log(this.data)
+        console.log(this.data.title)
         this.product = await this.props.store.getReviewproduct(this.props.match.params.urlid)
         console.log(this.product)
     }
