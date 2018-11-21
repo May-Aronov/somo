@@ -82,9 +82,9 @@ class Home extends Component {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <div class="container">
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+{/* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   Open modal
-</button>
+</button> */}
 
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">

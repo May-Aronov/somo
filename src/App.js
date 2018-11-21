@@ -11,6 +11,7 @@ import AddReview from "./components/addReview"
 import ResultBook from "./components/book"
 import ResultMovie from "./components/movie"
 import signUp from "./components/signUp"
+import Chat from "./components/Chat"
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -28,6 +29,13 @@ class App extends Component {
     super(props);
     this.logout = this.logout.bind(this)
 }
+@observable showChat = false
+
+
+   @action openChat = () =>{
+    this.showChat = !this.showChat
+  }
+
   logout () {
         this.props.store.logout()
   
@@ -69,6 +77,8 @@ class App extends Component {
           <Route path="/book/:index/:urlid" exact render={({ match }) => <ResultBook match={match} />} />
           <Route path="/signUp" exact component={signUp} />
           <Route path="/feed" exact component={Feed} />
+          <button onClick={this.openChat}>Chat Online</button>
+          {this.showChat ? <div><Chat/></div> : null}
           
         </div>
       </Router>
