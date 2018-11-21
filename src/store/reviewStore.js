@@ -64,6 +64,21 @@ class reviewStore {
         }
     }
 
+
+    @action  getpopularhashtags= async () => {
+        try {
+            let product = await axios.get(`http://localhost:8080/tophashtags`)
+            console.log(product) 
+            return (product.data)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+
+
+ 
     @action getReviewproduct = async (productname) => {
         try {
             let product = await axios.get(`http://localhost:8080/product/${productname}`) 

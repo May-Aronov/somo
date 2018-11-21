@@ -200,7 +200,7 @@ router.get('/product/:urlid', (req, res) => {
 
 router.get('/topproducts', (req, res) => {
     Product.findAll({
-        attributes: ['id', 'name', 'imgurl', [Sequelize.fn('COUNT', 'reviews.productId'), 'ReviewCount']],
+        attributes: ['id', 'name', 'imgurl','type','urlid' ,[Sequelize.fn('COUNT', 'reviews.productId'), 'ReviewCount']],
         include: [
             {
                 attributes: [],
@@ -209,6 +209,22 @@ router.get('/topproducts', (req, res) => {
         ],
         group: ['id'],
         order: [[Sequelize.literal('ReviewCount'), 'DESC']]
+    }).then((products) => {
+        res.status(201).send(products)
+        
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+})
+
+
+router.get('/tophashtags', (req, res) => {
+    Hashtag.findAll({
+        attributes: { 
+            include: [[Sequelize.fn("COUNT", 'name'), 'TagCount']] 
+        }, group: ['name'],
+        order: [[Sequelize.literal('TagCount'), 'DESC']],
+        limit:10
     }).then((products) => {
         res.status(201).send(products)
         

@@ -65,8 +65,8 @@ class App extends Component {
           <Route path="/search" exact component={Search} />
           <Route path="/addReview" exact component={AddReview} />
           <Route path="/home" exact component={Home} />
-          <Route path="/movie/:index/:urlid" exact render={({ match }) => <ResultMovie match={match} />} />
-          <Route path="/book/:index/:urlid" exact render={({ match }) => <ResultBook match={match} />} />
+          <Route path="/movie/:urlid" exact render={({ match }) => <ResultMovie match={match} />} />
+          <Route path="/book/:urlid" exact render={({ match }) => <ResultBook match={match} />} />
           <Route path="/signUp" exact component={signUp} />
           <Route path="/feed" exact component={Feed} />
           

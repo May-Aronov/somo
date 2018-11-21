@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import TopP from './TopP'
+import Poptag from './Poptag'
 import Loader from './Loader'
 // import ResultMovie from './Result-movie';
 // import ResultBook from './Result-Book';
@@ -25,16 +26,16 @@ class Search extends Component {
     @observable openmodel = false
     @observable hashtag = null
     @observable loader = false
-    @observable popularProduct =[]
+    @observable popularProduct = []
+    @observable tags = []
 
 
 
     componentDidMount = async () => {
         try {
-            let popularProducts = await this.props.store.getpopular()
-            popularProducts=popularProducts.splice(0,5)
-            this.popularProduct= popularProducts
-            console.log( this.popularProduct)
+            let popularProducts = await this.props.store.getpopular();
+            this.popularProduct = popularProducts.splice(0, 5);
+            this.tags=await this.props.store.getpopularhashtags();
         }
         catch (error) {
             console.log(error)
@@ -87,7 +88,7 @@ class Search extends Component {
                                     <button type="button" className="btn cancel" onClick={this.hashtagModel}>Close</button>
                                 </form>
                             </div>}
-                        <Link to={p.type == "movie" ? `/movie/${i}/${p.urlid}` : `/book/${i}/${p.urlid}`}>
+                        <Link to={p.type == "movie" ? `/movie/${p.urlid}` : `/book/${p.urlid}`}>
                             <img className="imgsearch" src={p.imgurl} alt="proudct img" />
                         </Link >
                         <div className="cardetails">
@@ -111,12 +112,21 @@ class Search extends Component {
         }
     }
 
-    gettop=()=>{
-      return  this.popularProduct.map((p)=>{
-          console.log(p)
-         return  <TopP product={p}/>
+    gettop = () => {
+        return this.popularProduct.map((p) => {
+            console.log(p)
+            return <TopP product={p} />
         })
     }
+
+    gettoptags=()=>{
+        return this.tags.map((t) => {
+            console.log(t)
+            return <Poptag hashtagClick={this.hashtagClick} tag={t} />
+        })
+    }
+
+
     render() {
         // if(!this.props.store.CurrentUser){
         //     alert("u need to sign in or signup")
@@ -132,46 +142,59 @@ class Search extends Component {
         return (
             <div className="text-center boxx " >
 
-            <div id="container-search-top">
-                <div className="w3-col l4" id="top-prod">
-                    <div className="w3-card ">
-                        <div className="w3-container w3-padding" id="pop-title">
-                            <h4>Popular Products</h4>
+                <div id="container-search-top">
+
+
+                    <div className="w3-col l4" >
+
+                        <div className="w3-card w3-margin">
+                            <div className="w3-container w3-padding" id="pop-title">
+                                <h4>Popular Products</h4>
+                            </div>
+                            <ul className="w3-ul w3-hoverable w3-white">
+                                {this.gettop()}
+                            </ul>
                         </div>
-                        <ul className="w3-ul w3-hoverable w3-white">
-                            {this.gettop()}
-                        </ul>
+
+                        <div class="w3-card w3-margin">
+                        <div class="w3-container w3-padding" id="pop-title">
+                            <h4>Tags</h4>
+                        </div>
+                        <div class="w3-container w3-white">
+                            <p>
+                            {this.gettoptags()}
+                            </p>
+                        </div>
+                        </div>
                     </div>
-                </div>
 
-
-                <div className="inputSearch " >
-                    <h2 id="search">Search your reviews</h2>
-                    <div id="yourReview">
-                        <h2 className="searchTitle">search</h2>
-                        <div id="text-s">Choose whatever you whant to search:movie,book, hashtag..
+                    <div className="inputSearch" >
+                        <h2 id="search">Search your reviews</h2>
+                        <div id="yourReview">
+                            <h2 className="searchTitle">search</h2>
+                            <div id="text-s">Choose whatever you whant to search:movie,book, hashtag..
                             <p>And search! </p>
-                        </div>
-                        <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange} id="searchText" className="form-control" type="text" />
-                        <br></br>
-                        <select className="searchInput" className="btn btn-dark searchSelect" name='FilterName' value={this.FilterName} onChange={this.handleChange}>
-                            <option value='movie'>movie</option>
-                            <option value='book'>book</option>
-                            <option value='hashtags'>hashtags</option>
-                        </select>
-                        {/* <button  type="sumbit"   class="btn btn-dark" id="buttonAdd" onClick={this.onsubmit}>search</button> */}
-                        <div>
-                            {/* <div className="wrapper">
+                            </div>
+                            <input name="SearchText" type="text" value={this.SearchText} onChange={this.handleChange} id="searchText" className="form-control" type="text" />
+                            <br></br>
+                            <select className="searchInput" className="btn btn-dark searchSelect" name='FilterName' value={this.FilterName} onChange={this.handleChange}>
+                                <option value='movie'>movie</option>
+                                <option value='book'>book</option>
+                                <option value='hashtags'>hashtags</option>
+                            </select>
+                            {/* <button  type="sumbit"   class="btn btn-dark" id="buttonAdd" onClick={this.onsubmit}>search</button> */}
+                            <div>
+                                {/* <div className="wrapper">
                                 <span className="fa-stack ">      <FontAwesomeIcon icon="hashtag" size="10x" />
                                 </span>
                             </div> */}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div> 
+                </div>
                 <div className="SerchResultContainer">
-                    {this.props.store.products.length>0 ? this.renderProducts() : <Loader />}
+                    {this.props.store.products.length > 0 ? this.renderProducts() : null}
                 </div>
             </div>
         )
