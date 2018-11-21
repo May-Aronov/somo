@@ -26,6 +26,7 @@ class signUp extends Component {
   @action capture = () => {
     const imageSrc = this.Webcam.getScreenshot();
     this.user.img = imageSrc + ""
+    this.TakeScreenShoot()
   };
 
 
@@ -58,7 +59,7 @@ class signUp extends Component {
           <h3 id="sign2">profile image:</h3>
           <input name="img" value={this.user.img} onChange={this.handleChange} id="textSignUp" class="form-control" type="text" />
           <form className="formButtons">
-          <button className="btn btn-primary-dark "onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
+          <button type="button" className="btn btn-primary-dark "onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
           <br></br>
           {this.showCamera ?
              <div className="webCam">
@@ -70,10 +71,10 @@ class signUp extends Component {
               width={350}
               videoConstraints={videoConstraints}
             />
-            <button onClick={this.capture}>Capture photo</button>
+            <button type="button" onClick={this.capture}>Capture photo</button>
           </div>
            : null}
-          <button type="sumbit" onClick={this.onsubmit} class="btn btn-dark">sign-up</button>
+          <button type="button" onClick={this.onsubmit} class="btn btn-dark">sign-up</button>
           </form>
         </div>
         </div>

@@ -52,6 +52,17 @@ class reviewStore {
             console.log("fail to add hashtag")
         }
     }
+    
+    @action  getpopular= async () => {
+        try {
+            let product = await axios.get(`http://localhost:8080/topproducts`)
+            console.log(product) 
+            return (product.data)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
 
     @action getReviewproduct = async (productname) => {
         try {

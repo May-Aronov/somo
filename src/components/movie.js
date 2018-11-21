@@ -5,6 +5,7 @@ import { faStar, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import AddFollow from "./AddFollow";
+import Loader from "./Loader"
 
 library.add(faStar, faEdit);
 const axios = require('axios');
@@ -68,7 +69,7 @@ class ResultMovie extends Component {
             );
         }
         else {
-            return (<div></div>)
+            return (<Loader />)
         }
     }
 }
