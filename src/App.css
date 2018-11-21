@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Special+Elite');
-
+@import url('https://fonts.googleapis.com/css?family=Merienda+One|Special+Elite');
 .AppUl {
   list-style-type: none;
   margin: 0;
@@ -39,6 +39,7 @@ margin:auto;
   text-decoration: none;
   color: white;
   font-weight: 900;
+  font-size: 900;
 }
 
 .AppLi a {
@@ -74,7 +75,7 @@ color: white;
 text-align: center;
 padding: 14px 16px;
 text-decoration: none;
-font-family: trench;
+font-family: 'Special Elite', cursive;
 float: right;
 font-weight: 900;  
 text-decoration: none;
@@ -168,7 +169,7 @@ box-sizing: border-box;
   position: absolute;
   right:2%;
 color: white;
-font-family: trench;
+font-family: 'Special Elite', cursive;
 display: inline-block;
 box-sizing: border-box;
 }
@@ -251,7 +252,7 @@ box-sizing: border-box;
 }
 #bookReview{
   margin-top: 100px;
-  /* font-family: "trench	"; */
+  /* font-family: "'Special Elite', cursive	"; */
 margin-left: 230px;
 color: rgb(192, 190, 190);
     background-color: #111;
@@ -271,7 +272,7 @@ color: rgb(192, 190, 190);
   -webkit-text-fill-color: transparent;
   margin-left: 150px;
   font-family: 'Special Elite', cursive;
-}
+  font-family: 'Merienda One', cursive;}
 
 #bookTitle{
   font-family: 'Special Elite', cursive;
@@ -327,15 +328,15 @@ margin-left: 135px;
 
 }
 #yourReview{
-  font-family: trench; 
+  font-family: 'Special Elite', cursive; 
 
 }
 #yourProduct{
-  font-family: trench	;
+  font-family: 'Special Elite', cursive	;
 
 }
 #yourHashtags{
-  font-family: trench;
+  font-family: 'Special Elite', cursive;
 
 }
 #buttonAdd{
@@ -387,7 +388,7 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
 
   position: relative;
   display: inline-block;
-  font-family: trench;
+  font-family: 'Special Elite', cursive;
   margin-left: 150px;
   
 
@@ -425,7 +426,7 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
   visibility: visible;
 }
 #yourUsername{
-  font-family: "trench	";
+  font-family: "'Special Elite', cursive	";
 
 }
 .popluarbox{
@@ -600,7 +601,7 @@ width: 250px;
 margin-left: 270px;
 }
 #yourCurrentUser{
-  font-family: trench;
+  font-family: 'Special Elite', cursive;
 }
 .addReviewForm{
 
