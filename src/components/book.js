@@ -28,12 +28,14 @@ class ResultBook extends Component {
             return (
 
                 <div className="container-book" class="text-center">
+                <div id="name-Img">
                     <div className="name-book">
                         <h1 id="bookTitle">{this.data.title}</h1>
                     </div>
                     <div className="img-book">
                         <img id="bookImage" src={this.data.imageLinks.smallThumbnail} width="250" height="250" />
                     </div>
+                </div>
                     <div id="detailsBook">
                         <div className="publish-book">
                             <h3>PublishDate:</h3><p>{this.data.publishedDate}</p>
@@ -61,7 +63,7 @@ class ResultBook extends Component {
                     <h2 id="bookReview" >Reviews:  <FontAwesomeIcon icon="edit" size="1x" /> </h2>
                         {this.product.reviews.map((r) => {
                             return <div>
-                                {r.user.id == this.store.CurrentUser.id ? null:<AddFollow props favoriteid={r.user.id}/>}
+                                {r.user.id == this.props.store.CurrentUser.id ? null:<AddFollow props favoriteid={r.user.id}/>}
                                 <span>{r.user ? r.user.name : null}</span> -  <span>{r.text}</span>
                             </div>
                         })}

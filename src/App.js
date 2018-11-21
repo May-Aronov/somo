@@ -54,10 +54,12 @@ class App extends Component {
 
               {this.props.store.CurrentUser ?
               
-                  <li className="AppLi user" onClick={this.logout}> 
-               <p >  <i id="online-dot">&middot;</i> <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt="" onClick={this.logout}/>   {this.props.store.CurrentUser.name} </p>
+                  <li className="AppLi user" > 
+               <p >  <i id="online-dot">&middot;</i>
+                <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt="" />
+                   {this.props.store.CurrentUser.name} </p>
                 </li>: null}
-
+<li className="AppLi LogOutButton" onClick={this.logout}><i class="fas fa-sign-out-alt"></i>Logout</li>
               <li id="SOMO">S O M O<br /><FontAwesomeIcon icon="users" size="2x" color="#blue" /></li>
             </ul>
           </div>

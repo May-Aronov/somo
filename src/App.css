@@ -37,6 +37,7 @@ margin:auto;
   float: left;
   text-decoration: none;
   color: white;
+  font-weight: 900;
 }
 
 .AppLi a {
@@ -44,11 +45,14 @@ margin:auto;
   color: rgb(133, 129, 129);
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
-  /* font-family: trench; */
+  font-family: trench;
   text-decoration: none;
   font-weight: bold;
-  
+  size:40px
+}
+
+.Linkim{
+  height: 30%;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -57,10 +61,28 @@ margin:auto;
   text-decoration: none;
 color: white;
 }
+.LogOutButton:hover {
+  background-color: rgba(199, 195, 195, 0.356);
+  text-decoration: none;
+color: white;
+}
+.LogOutButton{
+  cursor: pointer;
+  display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-family: trench;
+float: right;
+font-weight: 900;  
+text-decoration: none;
+margin-right: 7%;
+}
 #search{
   font-family: 'Courgette', 'cursive';
-  /* margin-top:270px;
-  margin-right: 650px; */
+  margin-top:5px;
+  margin-right: 200px;
   /* position: absolute;
   right: 60%;
   top:50% */
@@ -77,10 +99,14 @@ color: white;
 }
 #home{
   font-family: 'Courgette', 'cursive';
-  margin-top: 270px;
-  margin-right: 690px;
   
 }
+
+.Home{
+  margin-top:20%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 #text{
   width: 300px;
   margin-left: 530px;
@@ -110,6 +136,17 @@ box-sizing: border-box;
 #ex2:hover {
   transform: scale(1.09); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
+  #ex12{
+    width:200px;
+    margin-left: 687px;
+    transition: all .2s ease-in-out;
+    transition: transform .2s; /* Animation */
+    box-sizing: border-box;
+  
+  }
+  #logInButton{
+    margin-right: 5%;
+  }
 #ex1{
   width:200px;
   margin-left: 580px;
@@ -122,18 +159,20 @@ box-sizing: border-box;
 #ex1:hover {
   transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
+  
+#ex12:hover {
+  transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
 #SOMO{
   position: absolute;
   right:2%;
 color: white;
-/* font-family: trench; */
+font-family: trench;
 display: inline-block;
 box-sizing: border-box;
 }
 
-.Linkim{
-  height: 10%;
-}
+
 #bookImage{
 margin-right: 600px;
 margin-top: 40px;
@@ -234,17 +273,17 @@ color: rgb(192, 190, 190);
 }
 
 #bookTitle{
-  /* font-family: trench; */
+  font-family: trench;
 
 }
 #movieTitle{
-  /* font-family: trench	; */
+  font-family: trench	;
 
 }
 #o{
-  /* font-family: trench	; */
+font-family: trench	; 
 color: rgb(27, 27, 27);
-margin-left: 150px;
+margin-left: 135px;
 }
 #movieImage {
   -webkit-transition: all 0.5s ease;
@@ -281,20 +320,20 @@ margin-left: 150px;
 
 #sign{
   color: #333;
-  /* font-family: trench; */
+  font-family: trench; 
   margin-right: 70px;
 
 }
 #yourReview{
-  /* font-family: trench; */
+  font-family: trench; 
 
 }
 #yourProduct{
-  /* font-family: trench	; */
+  font-family: trench	;
 
 }
 #yourHashtags{
-  /* font-family: trench; */
+  font-family: trench;
 
 }
 #buttonAdd{
@@ -346,7 +385,7 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
 
   position: relative;
   display: inline-block;
-  /* font-family: trench; */
+  font-family: trench;
   margin-left: 150px;
   
 
@@ -543,11 +582,10 @@ margin-right: 600px;
   margin-left: 600px;
 }
 .SignUpStart{
-  margin-right: 500px;
-  margin-top:400px;
+  margin:auto
 }
 .webCam{
-  margin-top: -430px;
+  margin:auto;
   border-radius: 8px;
  
 }
@@ -560,7 +598,7 @@ width: 250px;
 margin-left: 270px;
 }
 #yourCurrentUser{
-  /* font-family: trench; */
+  font-family: trench;
 }
 .addReviewForm{
 
@@ -588,34 +626,21 @@ width: 250px;
 margin-left:270px;
 }
 
-/* #sign2{ */
-  /* font-family: trench; */
-  /* margin-right: 560px;
+#sign2{
+  font-family: trench;
 }
-.urlSignUp{
-  margin-right: -300px;
-} */
-/* .formButtons{
-  margin-right: 575px;
-}
-.searchTitle{
-  margin-right: 620px;
-}
-.searchSelect{
-  margin-right: 630px;
-
-} */
 .LoginForm{
   margin-left: 270px;
   margin-top: -300px;
 }
 .theLogInButton{
-  margin-left: 700px;
+  margin-left: 750px;
 }
 #LoginTitle{
   font-family: amsterdam;
   margin-top: 90px;
-  margin-left: 100px;
+  margin-left: 130px;
+
 } 
 
 
@@ -703,4 +728,13 @@ left:37%
   background-color: #111;
   color:cadetblue;
   font-weight: bold;
+  font-family: Lemon;
+}
+
+#img-movie{
+  margin-left: 200px;
+}
+
+#right-btn{
+margin-right:300px;
 }

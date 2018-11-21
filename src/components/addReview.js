@@ -88,8 +88,8 @@ class AddReview extends Component {
         }
         else if (this.user.productType == "movie") {
             try {
-                console.log('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
-                let Mydata = await axios.get('http://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
+                console.log('https://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
+                let Mydata = await axios.get('https://www.omdbapi.com/?apikey=9bededde&t=' + this.user.productName)
                 Mydata = Mydata.data
                 if (Mydata.Error) {
                     alert(Mydata.Error)
