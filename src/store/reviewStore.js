@@ -19,7 +19,7 @@ class reviewStore {
 
     @action  addFavorite= async (favoriteid) => {
         try {
-            let newfavorite= await axios.post(`http://localhost:8080/user/${this.CurrentUser.id}/favroite/${favoriteid}`, {})
+            let newfavorite= await axios.post(`/user/${this.CurrentUser.id}/favroite/${favoriteid}`, {})
             console.log(this.CurrentUser)
            this.CurrentUser.favorite.push(newfavorite.data)
         }
@@ -30,7 +30,7 @@ class reviewStore {
 
     @action addReview = async (user) => {
         try {
-            let newReview = await axios.post(`http://localhost:8080/newreview/${this.CurrentUser.id}`, user)
+            let newReview = await axios.post(`/newreview/${this.CurrentUser.id}`, user)
            return true;
         }
         catch{
@@ -42,7 +42,7 @@ class reviewStore {
     @action AddHashtag = async (hashtag, productID,productindex) => {
         try {
             console.log(hashtag, productID)
-            let newhashtag = await axios.post(`http://localhost:8080/product/${productID}/`, { hashtag: hashtag })
+            let newhashtag = await axios.post(`/product/${productID}/`, { hashtag: hashtag })
             console.log(newhashtag, this.products)
 
             this.products[productindex].hashtags.push(newhashtag.data) 
@@ -55,7 +55,7 @@ class reviewStore {
     
     @action  getpopular= async () => {
         try {
-            let product = await axios.get(`http://localhost:8080/topproducts`)
+            let product = await axios.get(`/topproducts`)
             console.log(product) 
             return (product.data)
         }
@@ -66,7 +66,7 @@ class reviewStore {
 
     @action getReviewproduct = async (productname) => {
         try {
-            let product = await axios.get(`http://localhost:8080/product/${productname}`) 
+            let product = await axios.get(`/product/${productname}`) 
             console.log(product.data)
             return product.data;           
         }
@@ -80,7 +80,7 @@ class reviewStore {
     @action filterReview = async (SearchText, filtername) => {
         try {
             console.log(filtername)
-            let products = await axios.get(`http://localhost:8080/search/${SearchText}/${filtername}`)
+            let products = await axios.get(`/search/${SearchText}/${filtername}`)
             if (filtername == 'hashtags') {
                 products.data = products.data.map((data) => { return (data = data.product) })
             }
@@ -95,7 +95,7 @@ class reviewStore {
 
     @action addUser = async (user) => {
         try {
-            let newUser = await axios.post(`http://localhost:8080/newuser`, { UserName: user.UserName, Img: user.img })
+            let newUser = await axios.post(`/newuser`, { UserName: user.UserName, Img: user.img })
             alert("u are successfully sign up , now go and sign in")
         }
         catch{
@@ -105,7 +105,7 @@ class reviewStore {
 
     @action getUser = async (user) => {
         try {
-            let currentuser = await axios.get(`http://localhost:8080/user/${user}`)
+            let currentuser = await axios.get(`/user/${user}`)
                 this.saveToLocalStorage(currentuser.data);
                 console.log(currentuser.data)
                 this.CurrentUser = this.getFromLocalStorage()
@@ -118,7 +118,7 @@ class reviewStore {
 
     @action getFeed = async () => {
         try {
-            let feed = await axios.get(`http://localhost:8080/myfeed/${this.CurrentUser.id}`)
+            let feed = await axios.get(`/myfeed/${this.CurrentUser.id}`)
             console.log(feed.data)
             return feed.data
         }
