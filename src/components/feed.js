@@ -3,10 +3,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
-import { faComment } from '@fortawesome/free-solid-svg-icons';
+import Loader from "./Loader"
 import '../Loader.css';
 import Post from "./post.js"
-library.add(faComment);
+
 
 
 @inject("store")
@@ -24,14 +24,15 @@ class Feed extends Component {
     this.feed.favorite.forEach((f) => {
       f.reviews.forEach((r) => {
         let date = new Date(r.createdAt)
+       let Time=(`${date.getHours()} : ${date.getMinutes()}`)
         let firstDate = date.toLocaleDateString()
-        cool.push({ user: f, text: r.text, date: firstDate, product: r.product })
+        cool.push({ user: f, text: r.text, date: firstDate , time: Time, product: r.product })
       })
     })
     this.reviews = cool.sort(function (a, b) {
       return new Date(b.date) - new Date(a.date);
     });
-    console.log(this.reviews)
+    // console.log(this.reviews)
   }
 
 
@@ -39,14 +40,17 @@ class Feed extends Component {
   render() {
     if (this.feed) { this.manipulateReviews() }
     if (this.reviews && this.feed) {
-      return (<div className="feed text-center" >
-        {this.reviews.map((u, i) => {
-          return <Post user={u} key={i} i={i} />
-        })}
-      </div>
+      return (
+        <div className="w3-theme-l5">
+          <div className="w3-col m7">
+            {this.reviews.map((u, i) => {
+              return <Post user={u} key={i} i={i} />
+            })}
+          </div>
+        </div >
       );
     }
-    else { return <div></div> }
+    else { return <Loader /> }
   }
 }
 

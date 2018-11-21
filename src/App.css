@@ -6,11 +6,20 @@
   overflow: hidden;
 
 }
-.Avatar{
-  width:60pt
+
+.postcard{
+  font-family: 'Courgette', 'cursive';
+  font-size: 18px;
+}
+
+#Avatar{
+width: 50px;
+height: 50px;
+  border-radius: 48%
 }
 #comment{
   background-color: lightsteelblue; 
+  margin-left: 80%
 }
 .productPhoto{
   width:90pt;
@@ -36,8 +45,9 @@ margin:auto;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-family: trench;
+  /* font-family: trench; */
   text-decoration: none;
+  font-weight: bold;
   
 }
 
@@ -48,22 +58,25 @@ margin:auto;
 color: white;
 }
 #search{
-  font-family: amsterdam;
-  margin-top:270px;
-  margin-right: 650px;
+  font-family: 'Courgette', 'cursive';
+  /* margin-top:270px;
+  margin-right: 650px; */
+  /* position: absolute;
+  right: 60%;
+  top:50% */
 }
 #SigninUp{
-  font-family: amsterdam;
+  font-family: 'Courgette', 'cursive';
   margin-top:-175px;
   margin-right: 110px;
 
 
 }
 .add{
-  font-family: amsterdam;
+  font-family: 'Courgette', 'cursive';
 }
 #home{
-  font-family: amsterdam;
+  font-family: 'Courgette', 'cursive';
   margin-top: 270px;
   margin-right: 690px;
   
@@ -113,7 +126,7 @@ box-sizing: border-box;
   position: absolute;
   right:2%;
 color: white;
-font-family: trench;
+/* font-family: trench; */
 display: inline-block;
 box-sizing: border-box;
 }
@@ -198,7 +211,7 @@ box-sizing: border-box;
 }
 #bookReview{
   margin-top: 100px;
-  font-family: "trench	";
+  /* font-family: "trench	"; */
 margin-left: 230px;
 color: rgb(192, 190, 190);
     background-color: #111;
@@ -216,23 +229,22 @@ color: rgb(192, 190, 190);
 	background: linear-gradient(to right, rgb(0, 0, 0) 0%, #ffffff 100%);
 	-webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: trench;
   margin-left: 150px;
 
 }
 
 #bookTitle{
-  font-family: trench;
+  /* font-family: trench; */
 
 }
 #movieTitle{
-  font-family: trench	;
+  /* font-family: trench	; */
 
 }
 #o{
-  font-family: trench	;
+  /* font-family: trench	; */
 color: rgb(27, 27, 27);
-margin-left: 500px;
+margin-left: 150px;
 }
 #movieImage {
   -webkit-transition: all 0.5s ease;
@@ -269,20 +281,20 @@ margin-left: 500px;
 
 #sign{
   color: #333;
-  font-family: trench;
+  /* font-family: trench; */
   margin-right: 70px;
 
 }
 #yourReview{
-  font-family: trench;
+  /* font-family: trench; */
 
 }
 #yourProduct{
-  font-family: trench	;
+  /* font-family: trench	; */
 
 }
 #yourHashtags{
-  font-family: trench;
+  /* font-family: trench; */
 
 }
 #buttonAdd{
@@ -302,7 +314,7 @@ margin-left: 500px;
 }
 
 .searchInput{
-margin-right: 400px;
+/* margin-right: 400px; */
 }
 #text1{
 
@@ -317,8 +329,12 @@ margin-left:105px;
 transition: transform .2s; /* Animation */
 box-sizing: border-box;
 width: 250px;
-margin-left:240px;
+margin: auto;
+/* margin-left:240px; */
 
+}
+#text-s{
+  background-color: rgba(247, 242, 242, 0.76);
 }
 #text1:hover {
 transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
@@ -330,7 +346,7 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
 
   position: relative;
   display: inline-block;
-  font-family: trench;
+  /* font-family: trench; */
   margin-left: 150px;
   
 
@@ -371,7 +387,12 @@ transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will g
   font-family: "trench	";
 
 }
-
+.popluarbox{
+  position: relative;
+}
+.boxx{
+  position: relative;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.0.4);
   transition: 0.3s;
@@ -539,7 +560,7 @@ width: 250px;
 margin-left: 270px;
 }
 #yourCurrentUser{
-  font-family: trench;
+  /* font-family: trench; */
 }
 .addReviewForm{
 
@@ -567,14 +588,14 @@ width: 250px;
 margin-left:270px;
 }
 
-#sign2{
-  font-family: trench;
-  margin-right: 560px;
+/* #sign2{ */
+  /* font-family: trench; */
+  /* margin-right: 560px;
 }
 .urlSignUp{
   margin-right: -300px;
-}
-.formButtons{
+} */
+/* .formButtons{
   margin-right: 575px;
 }
 .searchTitle{
@@ -583,7 +604,7 @@ margin-left:270px;
 .searchSelect{
   margin-right: 630px;
 
-}
+} */
 .LoginForm{
   margin-left: 270px;
   margin-top: -300px;
@@ -595,7 +616,7 @@ margin-left:270px;
   font-family: amsterdam;
   margin-top: 90px;
   margin-left: 100px;
-}
+} 
 
 
 
@@ -636,10 +657,48 @@ margin-left:270px;
 
 .Search{
 position: relative;
+right: 50%;
+top:50%;
+
 }
 
 
 .add-hashtag-icon{
   cursor: pointer;
   color: rgb(122, 130, 240);
+}
+
+#popular-p{
+  margin-left: 1%
+}
+.popular-img{
+  width: 50px;
+  height: 50px;
+}
+
+.container-search-top{
+/* display: inline-block; */
+/* justify-content: space-between;
+flex-direction: column; */
+height:50%;
+position: absolute;
+top:15%
+}
+
+.inputSearch{
+position: absolute;
+top: 50%;
+left:22%
+} 
+
+#top-prod{
+  position: absolute;
+  top:0;
+  width:20%;
+}
+
+#pop-title{
+  background-color: #111;
+  color:cadetblue;
+  font-weight: bold;
 }

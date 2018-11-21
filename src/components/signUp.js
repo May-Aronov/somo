@@ -58,7 +58,7 @@ class signUp extends Component {
           <h3 id="sign2">profile image:</h3>
           <input name="img" value={this.user.img} onChange={this.handleChange} id="textSignUp" class="form-control" type="text" />
           <form className="formButtons">
-          <button className="btn btn-primary-dark "onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
+          <button type="button" className="btn btn-primary-dark "onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
           <br></br>
           {this.showCamera ?
              <div className="webCam">

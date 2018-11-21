@@ -5,6 +5,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
 import AddFollow from "./AddFollow";
+import Loader from "./Loader"
 library.add( faEdit);
 const axios = require('axios')
 @inject("store")
@@ -70,7 +71,7 @@ class ResultBook extends Component {
             )
         }
         else {
-            return (<div></div>)
+            return (<Loader />)
         }
     }
 }

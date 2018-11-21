@@ -12,11 +12,11 @@ router.post('/newuser', (req, res) => {
     let name = req.body.UserName
     let imgUrl = req.body.Img
     User.findOrCreate({
-            where: {
-                name: name,
-                imgUrl: imgUrl
-            }
-        })
+        where: {
+            name: name,
+            imgUrl: imgUrl
+        }
+    })
         .spread(async (User, created) => {
             if (created) {
                 let user = await User.get({
@@ -34,20 +34,20 @@ router.post('/user/:userID/favroite/:favroiteID', (req, res) => {
     let userid = req.params.userID
     let favroiteid = req.params.favroiteID
     UserFavorite.create({
-            favoriteId: favroiteid,
-            userId: userid
-        }).then((user) => {
-            User.findOne({
-                where: {
-                    id: favroiteid
-                }
-            }).then(favorite => {
-                console.log(favorite)
-                res.status(201).send(favorite)
-            }).catch((error) => {
-                res.status(500).send(error)
-            })
+        favoriteId: favroiteid,
+        userId: userid
+    }).then((user) => {
+        User.findOne({
+            where: {
+                id: favroiteid
+            }
+        }).then(favorite => {
+            console.log(favorite)
+            res.status(201).send(favorite)
+        }).catch((error) => {
+            res.status(500).send(error)
         })
+    })
         .catch((error) => {
             res.status(500).send(error)
         })
@@ -56,11 +56,11 @@ router.post('/user/:userID/favroite/:favroiteID', (req, res) => {
 router.post(`/product/:productID`, (req, res) => {
     let hashtag = req.body.hashtag
     Hashtag.findOrCreate({
-            where: {
-                name: hashtag,
-                productId: req.params.productID
-            }
-        })
+        where: {
+            name: hashtag,
+            productId: req.params.productID
+        }
+    })
         .spread(async (hashtag, created) => {
             if (created) {
                 let Hashtag = await hashtag.get({
@@ -115,7 +115,7 @@ router.post('/newreview/:userid', async (req, res) => {
                 })
                 res.status(201).send(review)
             })
-           
+
     }
     catch (error) {
         res.status(500).send(err);
@@ -153,31 +153,31 @@ router.get('/myfeed/:userID', async (req, res) => {
     // let thisTime=now.toISOString().slice(0, 19).replace('T', ' ')
 
     let userID = req.params.userID;
-        User.findOne({
-            where: {
-                id: userID
-            },
+    User.findOne({
+        where: {
+            id: userID
+        },
+        include: [{
+            model: User,
+            as: "favorite",
+            attributes: ['id', 'name', 'imgUrl'],
+            order: [
+                [Review, 'createdAt', 'DEC']
+            ],
             include: [{
-                model:User,
-                as :"favorite", 
-                attributes: ['id', 'name', 'imgUrl'],  
-                order: [
-                    [Review, 'createdAt', 'DEC']
-                  ],
-                include:[{
-                    model: Review,
-                    order: [['createdAt','DEC']],
-                    attributes: ['id', 'text', 'createdAt'],
-                    include: [{
-                        model: Product
-                    }]
+                model: Review,
+                order: [['createdAt', 'DEC']],
+                attributes: ['id', 'text', 'createdAt'],
+                include: [{
+                    model: Product
                 }]
             }]
-        }).then((user) => {
-         res.status(201).send(user)
-        }).catch((error) => {
-            console.log(error)
-        })
+        }]
+    }).then((user) => {
+        res.status(201).send(user)
+    }).catch((error) => {
+        console.log(error)
+    })
 
 })
 
@@ -196,41 +196,31 @@ router.get('/product/:urlid', (req, res) => {
     })
 })
 
-// router.get('/topproducts', (req, res) => {
-// Product.findAll({
-//     attributes: [
-//         'name','imgurl',
-//         [Sequelize.literal('(SELECT COUNT(*) FROM Review WHERE Review.productId = Product.id)'), 'ReviewCount']
-//     ],
-//     order: [[Sequelize.literal('ReviewCount'), 'DESC']]
-// })
-//   .then(product => {
-//         console.log(product)
-//         res.status(201).send(product)
-//     }).catch((error) => {
-//         res.status(500).send(error)
-//     })
-// })
+
+
+router.get('/topproducts', (req, res) => {
+    Product.findAll({
+        attributes: ['id', 'name', 'imgurl', [Sequelize.fn('COUNT', 'reviews.productId'), 'ReviewCount']],
+        include: [
+            {
+                attributes: [],
+                model: Review
+            }
+        ],
+        group: ['id'],
+        order: [[Sequelize.literal('ReviewCount'), 'DESC']]
+    }).then((products) => {
+        res.status(201).send(products)
+        
+    }).catch((error) => {
+        res.status(500).send(error)
+    })
+})
 
 
 
 
-  
-
-// Product.findAll({
-//     attributes: {
-//       include: [
-//         [Sequelize.fn('COUNT', Sequelize.col('Review. productId')), 'count']
-//       ]
-//     },
-//     include: [{
-//       attributes: [],
-//       model:Review,
-//       duplicating: false,
-//       required: false
-//     }],
-//     order: [['count', 'DESC']]
-//   })
+ 
 
 
 router.get('/search/:SearchText/:filtername', (req, res) => {
@@ -260,23 +250,23 @@ router.get('/search/:SearchText/:filtername', (req, res) => {
         })
     } else {
         Hashtag.findAll({
-                where: {
-                    name: searchtext
-                },
+            where: {
+                name: searchtext
+            },
+            include: [{
+                model: Product,
                 include: [{
-                    model: Product,
+                    model: Review,
                     include: [{
-                        model: Review,
-                        include: [{
-                            model: User
-                        }]
-                    }, {
-                        model: Hashtag
+                        model: User
                     }]
+                }, {
+                    model: Hashtag
                 }]
-            }).then(product => {
-                res.status(201).send(product)
-            })
+            }]
+        }).then(product => {
+            res.status(201).send(product)
+        })
             .catch((error) => {
                 res.status(500).send(error)
             })

@@ -3,13 +3,15 @@ import createHistory from 'history/createBrowserHistory'
 import { BrowserRouter as Router, Link, Route, Redirect, withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
 import { observable, action } from "mobx";
+import Loader from "./Loader"
 
 
 @inject("store")
 @observer
 class Home extends Component {
   @observable user = null
-
+  @observable loader = false
+  
 
 
 
@@ -18,9 +20,11 @@ class Home extends Component {
   }
 
 
-  onsubmit = async () => {
+  @action onsubmit = async () => {
     if (this.user) {
+      this.loader=true
       await this.props.store.getUser(this.user)
+      this.loader=false
       if(this.props.store.CurrentUser){
         this.props.history.push("/search");
       }
@@ -63,9 +67,7 @@ class Home extends Component {
 <br></br>
 <h4 class="text-center" id="o">Username:</h4>
         <input name="user" value={this.user} onChange={this.handleChange} class="form-control" id="ex1" type="text" />
-        {/* <h4 class="text-center" id="o">Password:</h4>
-
-        <input class="form-control" id="ex1" type="text" /> */}
+        {this.loader ? <Loader />: null}
         <br></br>
         {/* <Link to="/search">  */}
         <button type="button" onClick={this.onsubmit} class="btn btn-dark theLogInButton" >Log In</button>
@@ -82,11 +84,11 @@ class Home extends Component {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <div class="container">
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+{/* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   Open modal
-</button>
+</button> */}
 
-<div class="modal fade" id="myModal">
+{/* <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
     
@@ -105,7 +107,7 @@ class Home extends Component {
       
     </div>
   </div>
-</div>
+</div> */}
 
 </div>
 
