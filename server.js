@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const Api = require('./server/apis/usersApi')
-const SERVER_PORT = 8080;
+const SERVER_PORT = process.env.PORT || 8080;
 
 let app = express();
 
@@ -16,11 +16,14 @@ app.use(function (req, res, next) {
   })
 
 
-  app.use(express.static('public'));
+  app.use(express.static('build'));
   app.use(express.static('node_modules'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use('/',Api);
+  app.get("*" , (req,res)=>{
+      res.sendFile(path.join(__dirname,  '/build/index.html'))
+  })
 
 app.listen(SERVER_PORT, () => {
     console.log("Server started on port " + SERVER_PORT);

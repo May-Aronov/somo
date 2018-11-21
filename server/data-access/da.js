@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 class Connection{
     constructor(){
-        this.connection=new Sequelize('mysql://sql12263194:aYZ57i5R4J@sql12.freesqldatabase.com/sql12263194');
+        this.connection=new Sequelize(process.env.CONNECTION_STRING ||'mysql://sql12263194:aYZ57i5R4J@sql12.freesqldatabase.com/sql12263194');
         this.authenticate()
     }
     authenticate(){
