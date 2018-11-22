@@ -14,7 +14,7 @@ class Chat extends Component {
     }
     @observable messages = []
 
-    socket = io('localhost:8080');
+    socket = io();
 
 
     @action changeInput = (e) => {
