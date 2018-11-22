@@ -12,6 +12,10 @@ library.add(faComments);
 @observer
 class Post extends Component {
 
+openChat=()=>{
+  this.props.openChat()
+}
+
   render() {
       console.log(this.props.user)
       let i =this.props.i
@@ -43,7 +47,7 @@ class Post extends Component {
       </div>
     </div> 
 
-    <button type="button" id="comment" className="w3-button w3-theme-d2 w3-margin-bottom  "> <FontAwesomeIcon icon="comments"  color="white" /> Chat</button>
+    <button type="button" id="comment" className="w3-button w3-theme-d2 w3-margin-bottom " onClick={this.openChat}> <FontAwesomeIcon icon="comments"  color="white" /> Chat</button>
   </div>
 
     );

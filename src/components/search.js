@@ -145,9 +145,10 @@ class Search extends Component {
 
 
                 <div className="inputSearch " >
+                <form className="searchComponent">
                     <h2 id="search">Search your reviews</h2>
                     <div id="yourReview">
-                        <h2 className="searchTitle">search</h2>
+                        <h2 className="searchTitle"></h2>
                         <div id="text-s">Choose whatever you whant to search:movie,book, hashtag..
                             <p>And search! </p>
                         </div>
@@ -166,6 +167,7 @@ class Search extends Component {
                             </div> */}
                         </div>
                     </div>
+                    </form>
                 </div>
 
             </div> 

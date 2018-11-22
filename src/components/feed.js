@@ -7,6 +7,7 @@ import { faComment } from '@fortawesome/free-solid-svg-icons';
 import Loader from './Loader.js';
 import '../Loader.css';
 import Post from "./post.js"
+import Chat from "./chat.js"
 
 
 
@@ -16,6 +17,7 @@ class Feed extends Component {
   @observable feed = ''
   @observable reviews = ''
   @observable loader = ''
+  @observable chat = false
 
   @action componentDidMount = async () => {
     this.loader=true
@@ -39,6 +41,10 @@ class Feed extends Component {
     this.loader=false    
   }
 
+  @action openChat=()=>{
+    this.chat=true
+  }
+
 
 
   render() {
@@ -54,6 +60,8 @@ class Feed extends Component {
               return <Post user={u} key={i} i={i} />
             })}
           </div>
+          <Chat />
+          {this.chat? <Chat /> : null}
         </div >
       );
     }

@@ -50,7 +50,7 @@ class signUp extends Component {
       <div className="Search" class="text-center">
         <div className="inputSearch">
         <div className="SignUpStart">
-          <h2 id="SigninUp">Sign Up</h2>
+          <h1 id="SigninUp">Sign Up</h1>
           <br></br>
           <h3 class="text-center" id="sign">Username:</h3>
           <input name="UserName" value={this.user.UserName} onChange={this.handleChange} id="inputSignUp" class="form-control" type="text" />
@@ -58,8 +58,9 @@ class signUp extends Component {
           <div className="SignUpLater">
           <h3 id="sign2">profile image:</h3>
           <input name="img" value={this.user.img} onChange={this.handleChange} id="textSignUp" class="form-control" type="text" />
-          <form className="formButtons">
-          <button type="button" className="btn btn-primary-dark "onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
+          </div>
+          <div className="formButtons">
+          <button className="camButton" type="button" className="btn btn-primary-dark "onClick={this.TakeScreenShoot}>Take Screen Shoot</button>
           <br></br>
           {this.showCamera ?
              <div className="webCam">
@@ -71,12 +72,12 @@ class signUp extends Component {
               width={350}
               videoConstraints={videoConstraints}
             />
-            <button type="button" onClick={this.capture}>Capture photo</button>
+            <button className="camButton" type="button" onClick={this.capture}>Capture photo</button>
           </div>
            : null}
-          <button type="button" onClick={this.onsubmit} class="btn btn-dark">sign-up</button>
-          </form>
-        </div>
+          <button className="camButton" type="button" onClick={this.onsubmit} class="btn btn-dark">sign-up</button>
+          </div>
+
         </div>
 
       </div>

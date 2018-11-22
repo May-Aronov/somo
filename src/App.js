@@ -55,7 +55,7 @@ class App extends Component {
               {this.props.store.CurrentUser ?
               
                   <li className="AppLi user" > 
-               <p >  <i id="online-dot">&middot;</i>
+               <p className="picAndName">  <i id="online-dot">&middot;</i>
                 <img className="userimgnav" src={this.props.store.CurrentUser.imgUrl} alt="" />
                    {this.props.store.CurrentUser.name} </p>
                 </li>: null}

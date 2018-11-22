@@ -205,7 +205,7 @@ class AddReview extends Component {
         return (
             <div className="addReview" class="text-center">
 <div className="addReviewImg">
-                <h2><p className="add">Add new review</p></h2>
+                <h1><p className="add">Add new review</p></h1>
 
                 {this.props.store.CurrentUser &&
                     <div>

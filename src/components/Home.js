@@ -46,14 +46,14 @@ class Home extends Component {
     return (
       <div className="Home"  >
       <div className="home-left">
-        <h3 id="p">What's Your Fav?</h3>
+        <h1 id="p">What's Your Fave?</h1>
         
-          <h3 id="p" >Want to expand your knowledge <br></br>
-          about your fav book and movies?<br></br>
+          <h3 id="d" >Want to expand your knowledge <br></br>
+          about your favorite books and movies?<br></br>
 
           Check out our site, <br></br>
           which allows you to search your product,
-          <br></br> reccommed about it, and even add HASHTAGS!
+          <br></br> reccommed about it, and even add <b>HASHTAGS!</b>
 
           </h3>
           <div class="ofri"><h3>Hope you'll enjoy browsering our site!</h3>
@@ -64,7 +64,7 @@ class Home extends Component {
         <form className= "LoginForm">
         <br></br>
         <div className="Login">
-        <h3 id="LoginTitle" class="text-center">Login</h3>
+        <h1 id="LoginTitle" class="text-center">Login</h1>
 <br></br>
 <h4 class="text-center" id="o">Username:</h4>
         <input name="user" value={this.user} onChange={this.handleChange} class="form-control" id="ex12" type="text" />

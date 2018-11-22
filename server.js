@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const Api = require('./server/apis/usersApi')
+var socket = require('socket.io');
 const SERVER_PORT = process.env.PORT || 8080;
 const path = require("path")
 let app = express();
@@ -25,11 +26,21 @@ app.use(function (req, res, next) {
       res.sendFile(path.join(__dirname,  '/build/index.html'))
   })
 
-app.listen(SERVER_PORT, () => {
+server= app.listen(SERVER_PORT, () => {
     console.log("Server started on port " + SERVER_PORT);
 });
 
+io = socket(server);
 
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    socket.on('SEND_MESSAGE', function(data){
+       console.log(data);
+       
+        io.emit('RECEIVE_MESSAGE', data);
+    })
+});
 
 
 

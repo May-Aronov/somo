@@ -57,10 +57,10 @@ class ResultMovie extends Component {
                         <h2 id="review">Reviews <FontAwesomeIcon icon="edit" size="1x" /></h2>
                         <div>
                             {this.product.reviews.map((r) => {
-                                return <div>
+                                return <div className="usersRevies1">
                                     {r.user.id == this.props.store.CurrentUser.id ? null : <AddFollow props favoriteid={r.user.id} />}
-                                    <span>{r.user.id == this.props.store.CurrentUser.id ? "you" : r.user.name}</span> -  <span>{r.text}</span>
-                                </div>
+                                    <h3>{r.user.id == this.props.store.CurrentUser.id ? "you" : r.user.name}- </h3>  <h4>{r.text}</h4>
+                                    </div>
                             })}
                         </div>
                     </div>
